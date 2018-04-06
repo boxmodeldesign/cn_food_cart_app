@@ -1,0 +1,46 @@
+[
+    {
+        "name": "Tito's Tacos",
+        "open": true,
+        "location": "main",
+        "type": "cart",
+        "link": "https://maps.google.com/?cid=1956414439244754021",
+        "category": "Mexican",
+        "dishes": [
+            {
+                "name": "Chicken Burrito",
+                "type": "burrito",
+                "tags": ["meat"],
+                "notes": "Rice, beans, chicken. Real good."
+            },
+            {
+                "name": "Veggie Burrito",
+                "type": "burrito",
+                "tags": ["veggie", "vegan"],
+                "notes": "Can be made vegan on request."
+            }
+        ]
+    },
+    {
+        "name": "Bombay Chaat House",
+        "open": true,
+        "location": "12th & Yamhill",
+        "type": "cart",
+        "link": "https://maps.google.com/?cid=17362000647289883045",
+        "category": "Indian",
+        "dishes": [
+            {
+                "name": "Lunch Special",
+                "type": "curry",
+                "tags": ["veggie", "vegan"],
+                "notes": "3 curries, rice, and naan. Try an iced chai for $2."
+            }
+        ]
+    },
+    {
+        "name": "Another Example",
+        "open": false,
+        "location": "main",
+        "type": "restaurant"
+    }
+]
