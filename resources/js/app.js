@@ -70,7 +70,7 @@ class CartList extends React.Component {
     makeList() {
         var list = [];
         this.props.carts.forEach(cart => {
-            if (this.testFilters(cart)) {
+            if (this.testFilters(cart) && cart.open) {
                 list.push(cart);
             }
         });
