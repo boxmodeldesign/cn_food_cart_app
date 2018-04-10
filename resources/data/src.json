@@ -15,9 +15,9 @@
             },
             {
                 "name": "Veggie Burrito",
-                "type": "burrito",
+                "type": "Burrito",
                 "tags": ["veggie", "vegan"],
-                "notes": "Can be made vegan on request."
+                "notes": "Can be made vegan on request. Really great so-cal style burrito, which is rare in Portland."
             }
         ]
     },
@@ -31,9 +31,137 @@
         "dishes": [
             {
                 "name": "Lunch Special",
-                "type": "curry",
+                "type": "Curry",
                 "tags": ["veggie", "vegan"],
                 "notes": "3 curries, rice, and naan. Try an iced chai for $2."
+            }
+        ]
+    },
+    {
+        "name": "Huong's",
+        "open": true,
+        "location": "10th & Alder",
+        "type": "cart",
+        "link": "https://goo.gl/maps/wAQNveBRYk62",
+        "category": "Vietnamese",
+        "dishes": [
+            {
+                "name": "Banh Mi",
+                "type": "Sandwich",
+                "tags": ["veggie", "vegan", "meat"],
+                "notes": "This is a full meal amount of food for $4. Also, it's really good."
+            }
+        ]
+    },
+    {
+        "name": "Burger Stevens",
+        "open": true,
+        "location": "Pioneer Square",
+        "type": "cart",
+        "link": "https://goo.gl/maps/zyDPaxLxTcJ2",
+        "category": "American",
+        "dishes": [
+            {
+                "name": "Burger",
+                "type": "Sandwich",
+                "tags": ["veggie", "vegan", "meat"],
+                "notes": "Everything at this cart is good. The veggie burger can be made vegan with avocado spread. Fries are $3 extra but so worth it."
+            }
+        ]
+    },
+    {
+        "name": "E-San",
+        "open": true,
+        "location": "10th and Alder",
+        "type": "cart",
+        "link": "https://goo.gl/maps/V5iQqY2zyiP2",
+        "category": "Thai",
+        "dishes": [
+            {
+                "name": "Pad Thai",
+                "type": "Noodles",
+                "tags": ["veggie", "vegan", "meat", "gf"],
+                "notes": "This cart is reliable, and they really do Pad Thai well. They have carts around town, but I think this is the best one. They accept custom orders, such as vegan, sub vegetables, brown rice, etc."
+            }
+        ]
+    },
+    {
+        "name": "808 Grinds",
+        "open": true,
+        "location": "9th and Washington",
+        "type": "cart",
+        "link": "https://goo.gl/maps/aREXdb7JEcn",
+        "category": "Hawaiian",
+        "dishes": [
+            {
+                "name": "808 Fried Chicken",
+                "type": "Plate",
+                "tags": ["meat"],
+                "notes": "Really great comfort food. They do everything well, but this dish is the most popular."
+            }
+        ]
+    },
+    {
+        "name": "808 Grinds",
+        "open": true,
+        "location": "9th and Washington",
+        "type": "cart",
+        "link": "https://goo.gl/maps/aREXdb7JEcn",
+        "category": "Hawaiian",
+        "dishes": [
+            {
+                "name": "808 Fried Chicken",
+                "type": "Plate",
+                "tags": ["meat"],
+                "notes": "Really great comfort food. They do everything well, but this dish is the most popular."
+            }
+        ]
+    },
+    {
+        "name": "Wolf and Bear",
+        "open": true,
+        "location": "10th and Washington",
+        "type": "cart",
+        "link": "https://goo.gl/maps/J8ggJKd53Hz",
+        "category": "Mediterranean",
+        "dishes": [
+            {
+                "name": "Falafel",
+                "type": "Wrap",
+                "tags": ["veggie", "vegan"],
+                "notes": "Portland-style Mediterranean food. This wrap has really great fresh veggies (fried egg plant too!), crispy falafel, and some an amazing tahini sauce with hummus."
+            }
+        ]
+    },
+    {
+        "name": "The Whole Bowl",
+        "open": true,
+        "location": "Pioneer Square",
+        "type": "cart",
+        "link": "https://goo.gl/maps/o82P9wG2cdo",
+        "category": "Fusion",
+        "dishes": [
+            {
+                "name": "Big Bowl",
+                "type": "Bowl",
+                "tags": ["veggie", "vegan"],
+                "notes": "This is the only thing they serve, in 2 sizes. One of Portland's most popular food carts, with a bunch of locations all over town. The sauce is reknowned and makes a simple dish something special. Can be requested vegan, they will give you extra avocado."
+            }
+        ]
+    },
+    {
+        "name": "Fried Egg I'm in Love",
+        "open": true,
+        "location": "Pioneer Square",
+        "type": "cart",
+        "link": "https://goo.gl/maps/ZPdwVvXxBo62",
+        "category": "American",
+        "dishes": [
+            {
+                "name": "Yolko Ono",
+                "type": "Sandwich",
+                "tags": ["vegetarian", "meat"],
+                "notes": "Their signature dish, can be made vegatarian with veggie sausage."
             }
         ]
     },
