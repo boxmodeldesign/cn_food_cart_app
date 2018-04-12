@@ -37,30 +37,35 @@ class CartList extends React.Component {
         // test for "cart" v "restaurant"
         if (filters.cartsOnly) {
             if (cart.type != "cart") {
+                console.log(cart.name + " failed at filter 'cartsOnly': "+cart.type);
                 return false;
             }
         }
         // test for location
         if (filters.mainSquare) {
             if (cart.location != "main") {
+                console.log(cart.name + " failed at filter 'location': "+cart.location);
                 return false;
             }
         }
         // test for veggie options
         if (filters.veggie) {
             if (!this.checkTags(cart.dishes, "veggie")) {
+                console.log(cart.name + " failed at filter 'veggie'");
                 return false;
             }
         }
         // test for vegan options
         if (filters.vegan) {
             if (!this.checkTags(cart.dishes, "vegan")) {
+                console.log(cart.name + " failed at filter 'vegan'");
                 return false;
             }
         }
         // test for gluten-free options
         if (filters.gf) {
             if (!this.checkTags(cart.dishes, "gf")) {
+                console.log(cart.name + " failed at filter 'gf'");
                 return false;
             }
         }
@@ -88,10 +93,56 @@ class CartList extends React.Component {
     }
 }
 
+class FilterCheckbox extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+        this.state = {checked: this.props.value};
+    }
+    handleChange(e) {
+        var val = e.target.checked;
+        this.setState( {checked: val} );
+        this.props.handleChange(this.props.name, val);
+    }
+    render() {
+        const id = this.props.name+"-filter";
+        return (
+            <div className="custom-control custom-checkbox form-check-inline">
+                <input className="custom-control-input" type="checkbox" checked={this.state.checked} onChange={this.handleChange} id={id}  />
+                <label className="custom-control-label" htmlFor={id}>{this.props.label}</label>
+            </div>
+        );
+    }
+}
+
+class FilterSetup extends React.Component {
+    constructor(props) {
+        super(props);
+        this.updateFilter = this.updateFilter.bind(this);
+    }
+    updateFilter(filter, value) {
+        this.props.handleChange(filter, value);
+    }
+    render() {
+        const filters = this.props.filters;
+        return (
+            <div className="form-group form-inline">
+                <FilterCheckbox label="Show only carts" name="cartsOnly" value={filters.cartsOnly} handleChange={this.updateFilter} />
+                <FilterCheckbox label="Main square only" name="mainSquare" value={filters.mainSquare} handleChange={this.updateFilter} />
+                <strong className="mr-2">Dietary options:</strong>
+                <FilterCheckbox label="Vegetarian" name="veggie" value={filters.veggie} handleChange={this.updateFilter} />
+                <FilterCheckbox label="Vegan" name="vegan" value={filters.vegan} handleChange={this.updateFilter} />
+                <FilterCheckbox label="Gluten-free" name="gf" value={filters.gf} handleChange={this.updateFilter} />
+            </div>
+        );
+    }
+}
+
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.parseData = this.parseData.bind(this);
+        this.updateFilter = this.updateFilter.bind(this);
         this.state = {
             message: "Hello World!",
             filters: {
@@ -143,9 +194,19 @@ class App extends React.Component {
                 },
                 {
                     "name": "Another Example",
-                    "open": false,
+                    "open": true,
                     "location": "main",
-                    "type": "restaurant"
+                    "type": "restaurant",
+                    "link": "https://maps.google.com/?cid=17362000647289883045",
+                    "category": "Demo",
+                    "dishes": [
+                        {
+                            "name": "Demo Plate",
+                            "type": "test",
+                            "tags": ["gf", "veggie", "vegan"],
+                            "notes": "This one is an example."
+                        }
+                    ]
                 }
             ]
         };
@@ -162,6 +223,14 @@ class App extends React.Component {
         console.log(a);
         console.log("data: "+this.state.data);
     }
+    updateFilter(filter, value) {
+        // Because we have to update the entire {filters} object when we setState, we need to update the changed filter in an intermediary and then pass that in.
+        var newState = this.state.filters;
+        newState[filter] = value;
+        this.setState({ filters: newState }, function() {
+            //console.log(filter, this.state.filters[filter]);
+        });
+    }
     render() {
         const msg = this.state.message;
         const filters = this.state.filters;
@@ -169,6 +238,7 @@ class App extends React.Component {
         return (
             <div>
                 {msg}
+                <FilterSetup filters={filters} handleChange={this.updateFilter} />
                 <CartList filters={filters} carts={data} />
             </div>
         );
