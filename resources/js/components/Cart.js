@@ -24,9 +24,13 @@ class Cart extends React.Component {
         var icons = this.getIcons();
         return (
             <div className="row">
-                <div className="card card-body">
-                    <h4>{name} <small>{icons}</small></h4>
+                <div className="card card-body" data-toggle="collapse" data-target={"#"+name+"-expand"} aria-expanded="false" aria-controls={name+"-expand"}>
+                    <h4>{name} <small className="ml-2">{icons}</small></h4>
                     <p>Try the {dish.name}!</p>
+                    <div className="collapse" id={name+"-expand"}>
+                        <p className="text-muted">{dish.notes}</p>
+                        <p><a href={cart.link} target="_blank" title={"See "+name+" on the map"}><i className="material-icons">place</i> View on map</a></p>
+                    </div>
                 </div>
             </div>
         );
