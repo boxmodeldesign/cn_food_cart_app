@@ -1,7 +1,7 @@
 [
     {
         "name": "Tito's Tacos",
-        "open": true,
+        "open": "true",
         "location": "main",
         "type": "cart",
         "link": "https://maps.google.com/?cid=1956414439244754021",
@@ -23,7 +23,7 @@
     },
     {
         "name": "Bombay Chaat House",
-        "open": true,
+        "open": "true",
         "location": "12th & Yamhill",
         "type": "cart",
         "link": "https://maps.google.com/?cid=17362000647289883045",
@@ -39,7 +39,7 @@
     },
     {
         "name": "Huong's",
-        "open": true,
+        "open": "true",
         "location": "10th & Alder",
         "type": "cart",
         "link": "https://goo.gl/maps/wAQNveBRYk62",
@@ -55,7 +55,7 @@
     },
     {
         "name": "Burger Stevens",
-        "open": true,
+        "open": "true",
         "location": "Pioneer Square",
         "type": "cart",
         "link": "https://goo.gl/maps/zyDPaxLxTcJ2",
@@ -71,7 +71,7 @@
     },
     {
         "name": "E-San",
-        "open": true,
+        "open": "true",
         "location": "10th and Alder",
         "type": "cart",
         "link": "https://goo.gl/maps/V5iQqY2zyiP2",
@@ -87,7 +87,7 @@
     },
     {
         "name": "808 Grinds",
-        "open": true,
+        "open": "true",
         "location": "9th and Washington",
         "type": "cart",
         "link": "https://goo.gl/maps/aREXdb7JEcn",
@@ -103,7 +103,7 @@
     },
     {
         "name": "808 Grinds",
-        "open": true,
+        "open": "true",
         "location": "9th and Washington",
         "type": "cart",
         "link": "https://goo.gl/maps/aREXdb7JEcn",
@@ -119,7 +119,7 @@
     },
     {
         "name": "Wolf and Bear",
-        "open": true,
+        "open": "true",
         "location": "10th and Washington",
         "type": "cart",
         "link": "https://goo.gl/maps/J8ggJKd53Hz",
@@ -135,7 +135,7 @@
     },
     {
         "name": "The Whole Bowl",
-        "open": true,
+        "open": "true",
         "location": "Pioneer Square",
         "type": "cart",
         "link": "https://goo.gl/maps/o82P9wG2cdo",
@@ -151,7 +151,7 @@
     },
     {
         "name": "Fried Egg I'm in Love",
-        "open": true,
+        "open": "true",
         "location": "Pioneer Square",
         "type": "cart",
         "link": "https://goo.gl/maps/ZPdwVvXxBo62",
@@ -167,8 +167,18 @@
     },
     {
         "name": "Another Example",
-        "open": false,
+        "open": "false",
         "location": "main",
-        "type": "restaurant"
+        "type": "restaurant",
+        "link": "https://maps.google.com/?cid=17362000647289883045",
+        "category": "Demo",
+        "dishes": [
+            {
+                "name": "Demo Plate",
+                "type": "test",
+                "tags": ["gf", "veggie", "vegan"],
+                "notes": "This one is an example."
+            }
+        ]
     }
 ]

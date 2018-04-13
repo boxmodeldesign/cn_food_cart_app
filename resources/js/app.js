@@ -152,76 +152,25 @@ class App extends React.Component {
                 vegan: false,
                 gf: false
             },
-            // This was supposed to be in src.json but the parse isn't working so it's here for now.
-            data: [
-                {
-                    "name": "Tito's Tacos",
-                    "open": true,
-                    "location": "main",
-                    "type": "cart",
-                    "link": "https://maps.google.com/?cid=1956414439244754021",
-                    "category": "Mexican",
-                    "dishes": [
-                        {
-                            "name": "Chicken Burrito",
-                            "type": "burrito",
-                            "tags": ["meat"],
-                            "notes": "Rice, beans, chicken. Real good."
-                        },
-                        {
-                            "name": "Veggie Burrito",
-                            "type": "burrito",
-                            "tags": ["veggie", "vegan"],
-                            "notes": "Can be made vegan on request."
-                        }
-                    ]
-                },
-                {
-                    "name": "Bombay Chaat House",
-                    "open": true,
-                    "location": "12th & Yamhill",
-                    "type": "cart",
-                    "link": "https://maps.google.com/?cid=17362000647289883045",
-                    "category": "Indian",
-                    "dishes": [
-                        {
-                            "name": "Lunch Special",
-                            "type": "curry",
-                            "tags": ["veggie", "vegan"],
-                            "notes": "3 curries, rice, and naan. Try an iced chai for $2."
-                        }
-                    ]
-                },
-                {
-                    "name": "Another Example",
-                    "open": true,
-                    "location": "main",
-                    "type": "restaurant",
-                    "link": "https://maps.google.com/?cid=17362000647289883045",
-                    "category": "Demo",
-                    "dishes": [
-                        {
-                            "name": "Demo Plate",
-                            "type": "test",
-                            "tags": ["gf", "veggie", "vegan"],
-                            "notes": "This one is an example."
-                        }
-                    ]
-                }
-            ]
+            data: []
         };
     }
     componentWillMount() {
+        var root = this;
         //Bring this back to use the JSON
-        /*var openData = new XMLHttpRequest();
-        openData.onload = this.parseData();
+        var openData = new XMLHttpRequest();
+        openData.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                root.setState( {data: JSON.parse(this.responseText)} );
+            }
+        }
         openData.open("get", "resources/data/src.json", true);
-        openData.send();*/
+        openData.send();
     }
     parseData(e) {
-        var a = JSON.stringify(this.responseText);
+        var a = JSON.parse(this.responseText);
         console.log(a);
-        console.log("data: "+this.state.data);
+        //this.setState( {data: a} );
     }
     updateFilter(filter, value) {
         // Because we have to update the entire {filters} object when we setState, we need to update the changed filter in an intermediary and then pass that in.
