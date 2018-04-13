@@ -16,6 +16,7 @@ class Cart extends React.Component {
         );
     }
 }
+// import Cart from './Cart';
 
 class CartList extends React.Component {
     constructor(props) {
