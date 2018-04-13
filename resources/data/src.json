@@ -102,22 +102,6 @@
         ]
     },
     {
-        "name": "808 Grinds",
-        "open": "true",
-        "location": "9th and Washington",
-        "type": "cart",
-        "link": "https://goo.gl/maps/aREXdb7JEcn",
-        "category": "Hawaiian",
-        "dishes": [
-            {
-                "name": "808 Fried Chicken",
-                "type": "Plate",
-                "tags": ["meat"],
-                "notes": "Really great comfort food. They do everything well, but this dish is the most popular."
-            }
-        ]
-    },
-    {
         "name": "Wolf and Bear",
         "open": "true",
         "location": "10th and Washington",
