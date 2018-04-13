@@ -12,7 +12,7 @@ class FilterCheckbox extends React.Component {
     render() {
         const id = this.props.name+"-filter";
         return (
-            <div className="custom-control custom-checkbox form-check-inline">
+            <div className="custom-control custom-checkbox">
                 <input className="custom-control-input" type="checkbox" checked={this.state.checked} onChange={this.handleChange} id={id}  />
                 <label className="custom-control-label" htmlFor={id}>{this.props.label}</label>
             </div>
