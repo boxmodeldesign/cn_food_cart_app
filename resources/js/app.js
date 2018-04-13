@@ -45,10 +45,13 @@ class App extends React.Component {
         const filters = this.state.filters;
         const data = this.state.data;
         return (
-            <div>
-                {msg}
-                <FilterSetup filters={filters} handleChange={this.updateFilter} />
-                <CartList filters={filters} carts={data} />
+            <div className="row">
+                <div className="col-3">
+                    <FilterSetup filters={filters} handleChange={this.updateFilter} />
+                </div>
+                <div className="col-9">
+                    <CartList filters={filters} carts={data} />
+                </div>
             </div>
         );
     }

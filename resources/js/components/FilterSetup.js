@@ -9,7 +9,7 @@ class FilterSetup extends React.Component {
     render() {
         const filters = this.props.filters;
         return (
-            <div className="form-group form-inline">
+            <div className="form-group">
                 <FilterCheckbox label="Show only carts" name="cartsOnly" value={filters.cartsOnly} handleChange={this.updateFilter} />
                 <FilterCheckbox label="Main square only" name="mainSquare" value={filters.mainSquare} handleChange={this.updateFilter} />
                 <strong className="mr-2">Dietary options:</strong>
