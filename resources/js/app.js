@@ -47,7 +47,7 @@ class App extends React.Component {
         return (
             <div>
                 {msg}
-                <FilterSetup filters={filters} handleChange={this.updateFilter} />
+                <FilterSetup filters={filters} handleChange={this.updateFilter} foodData={data} />
                 <CartList filters={filters} carts={data} />
             </div>
         );
