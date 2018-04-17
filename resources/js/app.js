@@ -52,13 +52,18 @@ class App extends React.Component {
         const msg = this.state.message;
         const filters = this.state.filters;
         const data = this.state.data;
+        const randomEatery = this.state.randomEatery;
+
         return (
             <div className="row">
                 <div className="col-3">
                     <FilterSetup filters={filters} handleChange={this.updateFilter} chooseRandomly={this.chooseRandomly} />
                 </div>
                 <div className="col-9">
-                    <CartList filters={filters} carts={data} />
+                    {this.state.chooseRandomly === true 
+                    ? <Suggestion randomEatery={randomEatery} />
+                    : <CartList filters={filters} carts={data} />
+                    }
                 </div>
             </div>
         );
