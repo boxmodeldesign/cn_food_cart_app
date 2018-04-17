@@ -1,3 +1,10 @@
 .material-icons {
     vertical-align: bottom;
 }
+.custom-control-label {
+    cursor: pointer;
+}
+.cart:hover {
+    cursor: pointer;
+    background-color: #eee;
+}

@@ -61,7 +61,7 @@ class CartList extends React.Component {
             }
         });
         return list.map( (item, index) =>
-            <Cart cart={item} key={"cart"+index} />
+            <Cart cart={item} filters={this.props.filters} key={"cart"+index} />
         );
     }
     render() {
