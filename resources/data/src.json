@@ -134,7 +134,7 @@
         ]
     },
     {
-        "name": "Fried Egg I'm in Love",
+        "name": "Fried Egg I'm In Love",
         "open": "true",
         "location": "Pioneer Square",
         "type": "cart",
@@ -144,7 +144,7 @@
             {
                 "name": "Yolko Ono",
                 "type": "Sandwich",
-                "tags": ["vegetarian", "meat"],
+                "tags": ["veggie", "meat"],
                 "notes": "Their signature dish, can be made vegatarian with veggie sausage."
             }
         ]
