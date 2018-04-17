@@ -15,6 +15,7 @@ class Suggestion extends React.Component {
 
                 <br /> <br />
 
+                {/* This will change the 'chooseRandomly' state to 'false' to bring back the CartList view */}
                 <button onClick={this.props.goBack}>
                     Back to the recommendation list
                 </button>
