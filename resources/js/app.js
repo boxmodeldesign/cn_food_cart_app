@@ -2,8 +2,11 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.updateFilter = this.updateFilter.bind(this);
+        this.chooseRandomly = this.chooseRandomly.bind(this);
         this.state = {
             message: "Hello World!",
+            chooseRandomly: false,
+            randomEatery: null,
             filters: {
                 cartsOnly: true,
                 mainSquare: false,
@@ -31,6 +34,20 @@ class App extends React.Component {
         newState[filter] = value;
         this.setState({ filters: newState });
     }
+
+    chooseRandomly(e){
+        // Prevent the page from reloading
+        e.preventDefault();
+
+        let maxEateries = this.state.data.length;
+        let randNum = Math.floor(Math.random() * Math.floor(maxEateries));
+
+        // Choose a random index from the eatery data array 
+        let randomEatery = this.state.data[randNum];
+
+        this.setState({chooseRandomly: true, randomEatery: randomEatery});
+    }
+
     render() {
         const msg = this.state.message;
         const filters = this.state.filters;
@@ -38,7 +55,7 @@ class App extends React.Component {
         return (
             <div className="row">
                 <div className="col-3">
-                    <FilterSetup filters={filters} handleChange={this.updateFilter} foodData={data} />
+                    <FilterSetup filters={filters} handleChange={this.updateFilter} chooseRandomly={this.chooseRandomly} />
                 </div>
                 <div className="col-9">
                     <CartList filters={filters} carts={data} />

@@ -8,7 +8,9 @@ class FilterSetup extends React.Component {
     }
     render() {
         const filters = this.props.filters;
-        const foodData = this.props.foodData
+        const foodData = this.props.foodData;
+        const chooseRandomly = this.props.chooseRandomly;
+
         return (
             <div className="form-group">
                 <FilterCheckbox label="Show only carts" name="cartsOnly" value={filters.cartsOnly} handleChange={this.updateFilter} />
@@ -17,7 +19,7 @@ class FilterSetup extends React.Component {
                 <FilterCheckbox label="Vegetarian" name="veggie" value={filters.veggie} handleChange={this.updateFilter} />
                 <FilterCheckbox label="Vegan" name="vegan" value={filters.vegan} handleChange={this.updateFilter} />
                 <FilterCheckbox label="Gluten-free" name="gf" value={filters.gf} handleChange={this.updateFilter} />
-                <RandomizerButton foodData={foodData}/>
+                <ChooseRandomlyButton chooseRandomly={chooseRandomly} />
             </div>
         );
     }
