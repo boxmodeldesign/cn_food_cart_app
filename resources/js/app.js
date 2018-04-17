@@ -3,6 +3,7 @@ class App extends React.Component {
         super(props);
         this.updateFilter = this.updateFilter.bind(this);
         this.chooseRandomly = this.chooseRandomly.bind(this);
+        this.notChooseRamdonly = this.notChooseRamdonly.bind(this);
         this.state = {
             message: "Hello World!",
             chooseRandomly: false,
@@ -48,6 +49,11 @@ class App extends React.Component {
         this.setState({chooseRandomly: true, randomEatery: randomEatery});
     }
 
+    notChooseRamdonly(e){
+        e.preventDefault();
+        this.setState({chooseRandomly: false});
+    }
+
     render() {
         const msg = this.state.message;
         const filters = this.state.filters;
@@ -61,7 +67,7 @@ class App extends React.Component {
                 </div>
                 <div className="col-9">
                     {this.state.chooseRandomly === true 
-                    ? <Suggestion randomEatery={randomEatery} />
+                    ? <Suggestion randomEatery={randomEatery} goBack={this.notChooseRamdonly} />
                     : <CartList filters={filters} carts={data} />
                     }
                 </div>
