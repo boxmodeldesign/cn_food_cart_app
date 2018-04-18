@@ -18,7 +18,8 @@ class FilterSetup extends React.Component {
                     <FilterCheckbox label="Main square only" name="mainSquare" value={filters.mainSquare} handleChange={this.updateFilter} />
                 </div>
                 <div className="form-group">
-                    <strong>Dietary options:</strong>
+                    <strong>Show me places with:</strong>
+                    <FilterCheckbox label="Meat" name="meat" value={filters.meat} handleChange={this.updateFilter} />
                     <FilterCheckbox label="Vegetarian" name="veggie" value={filters.veggie} handleChange={this.updateFilter} />
                     <FilterCheckbox label="Vegan" name="vegan" value={filters.vegan} handleChange={this.updateFilter} />
                     <FilterCheckbox label="Gluten-free" name="gf" value={filters.gf} handleChange={this.updateFilter} />

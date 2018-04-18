@@ -11,6 +11,8 @@ class App extends React.Component {
             filters: {
                 cartsOnly: true,
                 mainSquare: false,
+                // unfortunately, to add new dish-tag filters, you need to do so here, in <CartList />, <Cart />, and <FilterSetup />
+                meat: false,
                 veggie: true,
                 vegan: false,
                 gf: false
@@ -62,10 +64,10 @@ class App extends React.Component {
 
         return (
             <div className="row">
-                <div className="col-3">
+                <div className="col-md-3">
                     <FilterSetup filters={filters} handleChange={this.updateFilter} chooseRandomly={this.chooseRandomly} />
                 </div>
-                <div className="col-9">
+                <div className="col-md-9">
                     {this.state.chooseRandomly === true 
                     ? <Suggestion randomEatery={randomEatery} goBack={this.notChooseRamdonly} />
                     : <CartList filters={filters} carts={data} />

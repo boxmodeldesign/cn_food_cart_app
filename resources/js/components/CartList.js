@@ -30,6 +30,13 @@ class CartList extends React.Component {
             }
         }
         // test for veggie options
+        if (filters.meat) {
+            if (!this.checkTags(cart.dishes, "meat")) {
+                console.log(cart.name + " failed at filter 'meat'");
+                return false;
+            }
+        }
+        // test for veggie options
         if (filters.veggie) {
             if (!this.checkTags(cart.dishes, "veggie")) {
                 console.log(cart.name + " failed at filter 'veggie'");

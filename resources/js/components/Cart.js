@@ -23,11 +23,11 @@ class Cart extends React.Component {
         var dishes = this.props.cart.dishes;
         var filters = this.props.filters;
         var checks = [];
-        var against = ["veggie", "vegan", "gf"];
+        var against = ["meat", "veggie", "vegan", "gf"];
         against.forEach(tag => {
             if (filters[tag]) {
                 checks.push(tag);
-            }            
+            }
         });
         for (var i=0; i<dishes.length; i++) {
             if (dishes[i].tags.length >= checks.length) {
