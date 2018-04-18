@@ -12,15 +12,21 @@ class FilterSetup extends React.Component {
         const chooseRandomly = this.props.chooseRandomly;
 
         return (
-            <div className="form-group">
-                <FilterCheckbox label="Show only carts" name="cartsOnly" value={filters.cartsOnly} handleChange={this.updateFilter} />
-                <FilterCheckbox label="Main square only" name="mainSquare" value={filters.mainSquare} handleChange={this.updateFilter} />
-                <strong>Dietary options:</strong>
-                <FilterCheckbox label="Vegetarian" name="veggie" value={filters.veggie} handleChange={this.updateFilter} />
-                <FilterCheckbox label="Vegan" name="vegan" value={filters.vegan} handleChange={this.updateFilter} />
-                <FilterCheckbox label="Gluten-free" name="gf" value={filters.gf} handleChange={this.updateFilter} />
-                <ChooseRandomlyButton chooseRandomly={chooseRandomly} />
-            </div>
+            <form>
+                <div className="form-group">
+                    <FilterCheckbox label="Show only carts" name="cartsOnly" value={filters.cartsOnly} handleChange={this.updateFilter} />
+                    <FilterCheckbox label="Main square only" name="mainSquare" value={filters.mainSquare} handleChange={this.updateFilter} />
+                </div>
+                <div className="form-group">
+                    <strong>Dietary options:</strong>
+                    <FilterCheckbox label="Vegetarian" name="veggie" value={filters.veggie} handleChange={this.updateFilter} />
+                    <FilterCheckbox label="Vegan" name="vegan" value={filters.vegan} handleChange={this.updateFilter} />
+                    <FilterCheckbox label="Gluten-free" name="gf" value={filters.gf} handleChange={this.updateFilter} />
+                </div>
+                <div className="form-group">
+                    <ChooseRandomlyButton chooseRandomly={chooseRandomly} />
+                </div>
+            </form>
         );
     }
 }
