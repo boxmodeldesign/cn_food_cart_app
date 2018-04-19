@@ -8,3 +8,21 @@
     cursor: pointer;
     background-color: #eee;
 }
+
+.icons{
+    width: auto;
+}
+
+.cart_chevron{
+    position: absolute;
+       bottom: 10px;
+       right: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .icons{
+        display: block;
+        width: 100%;
+        margin-left: -.5rem
+    }
+}
