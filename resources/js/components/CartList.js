@@ -29,6 +29,24 @@ class CartList extends React.Component {
                 return false;
             }
         }
+        // test for cuisine
+        if (filters.cuisine != undefined && filters.cuisine != "") {
+            if (cart.category != filters.cuisine) {
+                console.log(cart.name + " failed at filter: 'cuisine'");
+                return false;
+            }
+        }
+        // test for food type - getting ahead of myself
+        /*var match = false;
+        for (var i=0; i<cart.dishes.length; i++) {
+            if (cart.dishes[i].type == filters.foodType) {
+                match = true;
+                break;
+            }
+        }
+        if (!match) {
+            return false;
+        }*/
         // test for veggie options
         if (filters.meat) {
             if (!this.checkTags(cart.dishes, "meat")) {
@@ -76,6 +94,12 @@ class CartList extends React.Component {
         return (
             <div>
                 {carts}
+                <div className="row no-results">
+                    <div class="card card-body">
+                        <h4>Sorry!</h4>
+                        <p>We don't have any recommendations that meet those filters. Adjust or clear your search and we'll try again.</p>
+                    </div>
+                </div>
             </div>
         );
     }

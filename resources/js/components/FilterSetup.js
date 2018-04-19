@@ -10,15 +10,21 @@ class FilterSetup extends React.Component {
         const filters = this.props.filters;
         const foodData = this.props.foodData;
         const chooseRandomly = this.props.chooseRandomly;
+        const cuisineList = this.props.cuisineList;
 
         return (
             <form>
                 <div className="form-group">
-                    <FilterCheckbox label="Show only carts" name="cartsOnly" value={filters.cartsOnly} handleChange={this.updateFilter} />
-                    <FilterCheckbox label="Main square only" name="mainSquare" value={filters.mainSquare} handleChange={this.updateFilter} />
+                    <strong>Show me:</strong>
+                    <FilterCheckbox label="Carts only" name="cartsOnly" value={filters.cartsOnly} handleChange={this.updateFilter} />
+                    <FilterCheckbox label="Alder square only" name="mainSquare" value={filters.mainSquare} handleChange={this.updateFilter} />
                 </div>
                 <div className="form-group">
-                    <strong>Show me places with:</strong>
+                    <strong>With this type of food:</strong>
+                    <FilterDropdown noLabel={true} label="Any cuisine" options={cuisineList} name="cuisine" value={filters.cuisine} handleChange={this.updateFilter} />
+                </div>
+                <div className="form-group">
+                    <strong>With these options:</strong>
                     <FilterCheckbox label="Meat" name="meat" value={filters.meat} handleChange={this.updateFilter} />
                     <FilterCheckbox label="Vegetarian" name="veggie" value={filters.veggie} handleChange={this.updateFilter} />
                     <FilterCheckbox label="Vegan" name="vegan" value={filters.vegan} handleChange={this.updateFilter} />

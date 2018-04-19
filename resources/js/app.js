@@ -4,6 +4,7 @@ class App extends React.Component {
         this.updateFilter = this.updateFilter.bind(this);
         this.chooseRandomly = this.chooseRandomly.bind(this);
         this.notChooseRamdonly = this.notChooseRamdonly.bind(this);
+        this.getCuisine = this.getCuisine.bind(this);
         this.state = {
             message: "Hello World!",
             chooseRandomly: false,
@@ -11,6 +12,8 @@ class App extends React.Component {
             filters: {
                 cartsOnly: true,
                 mainSquare: false,
+                cuisine: "",
+                foodType: "",
                 // unfortunately, to add new dish-tag filters, you need to do so here, in <CartList />, <Cart />, and <FilterSetup />
                 meat: false,
                 veggie: true,
@@ -56,16 +59,28 @@ class App extends React.Component {
         this.setState({chooseRandomly: false});
     }
 
+    getCuisine() {
+        var data = this.state.data;
+        var cuisines = [];
+        data.forEach(cart => {
+            if (cuisines.indexOf(cart.category) == -1) {
+                cuisines.push(cart.category);
+            }
+        });
+        return cuisines;
+    }
+
     render() {
         const msg = this.state.message;
         const filters = this.state.filters;
         const data = this.state.data;
         const randomEatery = this.state.randomEatery;
+        var cuisines = this.getCuisine();
 
         return (
             <div className="row">
                 <div className="col-md-3">
-                    <FilterSetup filters={filters} handleChange={this.updateFilter} chooseRandomly={this.chooseRandomly} />
+                    <FilterSetup filters={filters} handleChange={this.updateFilter} chooseRandomly={this.chooseRandomly} cuisineList={cuisines} />
                 </div>
                 <div className="col-md-9">
                     {this.state.chooseRandomly === true 
