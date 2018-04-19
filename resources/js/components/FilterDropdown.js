@@ -20,7 +20,7 @@ class FilterDropdown extends React.Component {
         // noLabel == true shows the label prop as the first option
         if (this.props.noLabel) {
             return (
-                <div>
+                <div className="mt-1">
                     <select className="custom-select" value={value} onChange={this.handleChange}>
                         <option value="">{label}</option>
                         {options}
