@@ -19,6 +19,10 @@
        right: 10px;
 }
 
+.row + .no-results {
+    display: none;
+}
+
 @media only screen and (max-width: 600px) {
     .icons{
         display: block;
