@@ -14,7 +14,7 @@ class App extends React.Component {
                 mainSquare: false,
                 cuisine: "",
                 foodType: "",
-                // unfortunately, to add new dish-tag filters, you need to do so here, in <CartList />, <Cart />, and <FilterSetup />
+                // If you add a new filter based on dish tags, be sure to do so here, in <CartList />, <Cart />, and <FilterSetup />
                 meat: false,
                 veggie: true,
                 vegan: false,

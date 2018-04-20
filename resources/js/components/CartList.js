@@ -4,6 +4,7 @@ class CartList extends React.Component {
         this.makeList = this.makeList.bind(this);
         this.testFilters = this.testFilters.bind(this);
         this.checkTags = this.checkTags.bind(this);
+        this.sortCartsAlpha = this.sortCartsAlpha.bind(this);
     }
     checkTags(dishes, param) {
         for (var i=0;i<dishes.length;i++) {
@@ -49,34 +50,45 @@ class CartList extends React.Component {
         }*/
         // test for veggie options
         if (filters.meat) {
-            if (!this.checkTags(cart.dishes, "meat")) {
+            if (!this.checkTags(cart.dishes, "M")) {
                 console.log(cart.name + " failed at filter 'meat'");
                 return false;
             }
         }
         // test for veggie options
         if (filters.veggie) {
-            if (!this.checkTags(cart.dishes, "veggie")) {
+            if (!this.checkTags(cart.dishes, "V")) {
                 console.log(cart.name + " failed at filter 'veggie'");
                 return false;
             }
         }
         // test for vegan options
         if (filters.vegan) {
-            if (!this.checkTags(cart.dishes, "vegan")) {
+            if (!this.checkTags(cart.dishes, "VG")) {
                 console.log(cart.name + " failed at filter 'vegan'");
                 return false;
             }
         }
         // test for gluten-free options
         if (filters.gf) {
-            if (!this.checkTags(cart.dishes, "gf")) {
+            if (!this.checkTags(cart.dishes, "GF")) {
                 console.log(cart.name + " failed at filter 'gf'");
                 return false;
             }
         }
         // We made it!
         return true;
+    }
+    sortCartsAlpha(a, b) {
+        var aName = a.name.toLowerCase();
+        var bName = b.name.toLowerCase();
+        if (aName < bName) {
+            return -1;
+        } else if (aName > bName) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
     makeList() {
         var list = [];
@@ -85,7 +97,7 @@ class CartList extends React.Component {
                 list.push(cart);
             }
         });
-        return list.map( (item, index) =>
+        return list.sort(this.sortCartsAlpha).map( (item, index) =>
             <Cart cart={item} filters={this.props.filters} key={"cart"+index} />
         );
     }

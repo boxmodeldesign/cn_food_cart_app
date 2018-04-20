@@ -24,10 +24,10 @@ class FilterSetup extends React.Component {
                 </div>
                 <div className="form-group">
                     <strong>Dietary options:</strong>
-                    <FilterCheckbox label="Meat" name="meat" value={filters.meat} handleChange={this.updateFilter} />
-                    <FilterCheckbox label="Vegetarian" name="veggie" value={filters.veggie} handleChange={this.updateFilter} />
-                    <FilterCheckbox label="Vegan" name="vegan" value={filters.vegan} handleChange={this.updateFilter} />
-                    <FilterCheckbox label="Gluten-free" name="gf" value={filters.gf} handleChange={this.updateFilter} />
+                    <FilterCheckbox label="Meat (M)" name="meat" value={filters.meat} handleChange={this.updateFilter} />
+                    <FilterCheckbox label="Vegetarian (V)" name="veggie" value={filters.veggie} handleChange={this.updateFilter} />
+                    <FilterCheckbox label="Vegan (VG)" name="vegan" value={filters.vegan} handleChange={this.updateFilter} />
+                    <FilterCheckbox label="Gluten-free (GF)" name="gf" value={filters.gf} handleChange={this.updateFilter} />
                 </div>
                 <div className="form-group">
                     <ChooseRandomlyButton chooseRandomly={chooseRandomly} />

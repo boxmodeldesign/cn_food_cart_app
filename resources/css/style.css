@@ -7,14 +7,23 @@
     background-color: #eee;
 }
 
-.icons{
-    width: auto;
+.badge-m {
+    background-color: #a72828;
+}
+.badge-v {
+    background-color: #4fa728;
+}
+.badge-vg {
+    background-color: #225d08;
+}
+.badge-gf {
+    background-color: #a78228;
 }
 
 .cart_chevron{
     position: absolute;
     bottom: 10px;
-    right: 10px;
+    right: 20px;
 }
 
 .row + .no-results {

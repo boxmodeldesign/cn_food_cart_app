@@ -14,8 +14,8 @@ class Cart extends React.Component {
                 }
             }
         }
-        return icons.map( (tag, index) =>
-            <span className="font-weight-light badge badge-pill badge-success mr-2" key={this.props.cart.name+"-"+tag}>{tag}</span>
+        return icons.sort().map( (tag, index) =>
+            <span className={"ml-2 font-weight-normal text-light badge badge-pill badge-"+tag.toLowerCase()} key={this.props.cart.name+"-"+tag}>{tag}</span>
         );
     }
     getDish() {
@@ -53,11 +53,14 @@ class Cart extends React.Component {
         const dish = this.getDish();
         var icons = this.getIcons();
         return (
-            <div className="row">
+            <div className="row mb-1">
                 <div className="card card-body cart" id="cart" data-toggle="collapse" data-target={"#"+name+"-expand"} aria-expanded="false" aria-controls={name+"-expand"}>
-                    <h4 className="flex flex-wrap">{name} <span className="icons"><small className="ml-2">{icons}</small></span></h4>
+                    <div className="row flex-wrap">
+                        <h4 className="col-auto mr-auto">{name}</h4>
+                        <span className="icons col-auto">{icons}</span>
+                    </div>
                     <p>Try the {dish.name}!</p>
-                    <span className="cart_chevron"> <i className="fas fa-chevron-down"></i></span>
+                    <span className="cart_chevron text-muted"> <i className="fa fa-chevron-down"></i></span>
                     <div className="collapse" id={name+"-expand"}>
                         <p className="text-muted">{dish.notes}</p>
                         <p><a href={cart.link} target="_blank" title={"See "+name+" on the map"}><i className="fa fa-map-pin"></i> View on map</a></p>
