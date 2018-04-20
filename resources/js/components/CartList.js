@@ -95,7 +95,7 @@ class CartList extends React.Component {
             <div>
                 {carts}
                 <div className="row no-results">
-                    <div class="card card-body">
+                    <div className="card card-body">
                         <h4>Sorry!</h4>
                         <p>We don't have any recommendations that meet those filters. Adjust or clear your search and we'll try again.</p>
                     </div>

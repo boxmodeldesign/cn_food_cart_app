@@ -1,9 +1,7 @@
-.material-icons {
-    vertical-align: bottom;
-}
 .custom-control-label {
     cursor: pointer;
 }
+
 .cart:hover {
     cursor: pointer;
     background-color: #eee;
@@ -15,8 +13,8 @@
 
 .cart_chevron{
     position: absolute;
-       bottom: 10px;
-       right: 10px;
+    bottom: 10px;
+    right: 10px;
 }
 
 .row + .no-results {
@@ -24,9 +22,9 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .icons{
+    .icons {
         display: block;
         width: 100%;
-        margin-left: -.5rem
+        margin-left: -.5rem;
     }
 }

@@ -8,7 +8,6 @@ class FilterSetup extends React.Component {
     }
     render() {
         const filters = this.props.filters;
-        const foodData = this.props.foodData;
         const chooseRandomly = this.props.chooseRandomly;
         const cuisineList = this.props.cuisineList;
 

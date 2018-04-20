@@ -6,19 +6,21 @@ class Suggestion extends React.Component {
     render() {
         const eatery = this.props.randomEatery;
         return(
-            <div>
-                <p>Head on over to <em>{eatery.name}</em> for the <em>{eatery.dishes[0].name}</em>.</p>
+            <div className="card card-body">
+                <h4>Head on over to <em>{eatery.name}</em> for the <em>{eatery.dishes[0].name}</em>.</h4>
                 
-                <p class="text-muted">{eatery.dishes[0].notes}</p>
+                <p className="text-muted">{eatery.dishes[0].notes}</p>
 
-                Location: <a href={eatery.link} target="_blank" title={"See "+eatery.name+" on the map"}><i className="material-icons">place</i>{eatery.location}</a>
-
-                <br /> <br />
+                <p>
+                    <a href={eatery.link} target="_blank" title={"See "+eatery.name+" on the map"}><i className="fa fa-map-pin"></i> {eatery.location}</a>
+                </p>
 
                 {/* This will change the 'chooseRandomly' state to 'false' to bring back the CartList view */}
-                <button className="btn btn-primary" onClick={this.props.goBack}>
-                    Back to the recommendation list
-                </button>
+                <p>
+                    <button className="btn btn-primary" onClick={this.props.goBack}>
+                        Back to the recommendation list
+                    </button>
+                </p>
             </div>
         )
     }

@@ -82,7 +82,7 @@ class App extends React.Component {
                 <div className="col-md-3">
                     <FilterSetup filters={filters} handleChange={this.updateFilter} chooseRandomly={this.chooseRandomly} cuisineList={cuisines} />
                 </div>
-                <div className="col-md-9">
+                <div className="col-md-8 offset-md-1">
                     {this.state.chooseRandomly === true 
                     ? <Suggestion randomEatery={randomEatery} goBack={this.notChooseRamdonly} />
                     : <CartList filters={filters} carts={data} />

@@ -60,7 +60,7 @@ class Cart extends React.Component {
                     <span className="cart_chevron"> <i className="fas fa-chevron-down"></i></span>
                     <div className="collapse" id={name+"-expand"}>
                         <p className="text-muted">{dish.notes}</p>
-                        <p><a href={cart.link} target="_blank" title={"See "+name+" on the map"}><i className="material-icons">place</i> View on map</a></p>
+                        <p><a href={cart.link} target="_blank" title={"See "+name+" on the map"}><i className="fa fa-map-pin"></i> View on map</a></p>
                     </div>
                 </div>
             </div>
