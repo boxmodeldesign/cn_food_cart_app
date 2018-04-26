@@ -17,7 +17,9 @@ class FilterSetup extends React.Component {
                 <div className="form-group">
                     <strong>Show me:</strong>
                     <FilterCheckbox label="Carts only" name="cartsOnly" value={filters.cartsOnly} handleChange={this.updateFilter} />
+                    {/* Ben - removed for now
                     <FilterCheckbox label="Alder square only" name="mainSquare" value={filters.mainSquare} handleChange={this.updateFilter} />
+                    */}
                 </div>
                 <div className="form-group">
                     <strong>Type of food:</strong>
