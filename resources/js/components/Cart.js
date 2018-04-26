@@ -24,11 +24,12 @@ class Cart extends React.Component {
         var filters = this.props.filters;
         var checks = [];
         var against = ["meat", "veggie", "vegan", "gf"];
-        against.forEach(tag => {
-            if (filters[tag]) {
-                checks.push(tag);
+        var tags = ["M", "V", "VG", "GF"];
+        for (var i=0; i<against.length; i++) {
+            if (filters[against[i]]) {
+                checks.push(tags[i]);
             }
-        });
+        };
         for (var i=0; i<dishes.length; i++) {
             if (dishes[i].tags.length >= checks.length) {
                 var match = true;
@@ -63,7 +64,7 @@ class Cart extends React.Component {
                     <span className="cart_chevron text-muted"> <i className="fa fa-chevron-down"></i></span>
                     <div className="collapse" id={name+"-expand"}>
                         <p className="text-muted">{dish.notes}</p>
-                        <p><a href={cart.link} target="_blank" title={"See "+name+" on the map"}><i className="fa fa-map-pin"></i> View on map</a></p>
+                        <p><a href={cart.link} target="_blank" title={"See "+name+" on the map"}><i className="fa fa-map-pin"></i> {cart.address}</a></p>
                     </div>
                 </div>
             </div>
