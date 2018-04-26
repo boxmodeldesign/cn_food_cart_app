@@ -1,7 +1,288 @@
 {
-    "employees":[
-        {"firstName":"John", "lastName":"Doe"},
-        {"firstName":"Anna", "lastName":"Smith"},
-        {"firstName":"Peter", "lastName":"Jones"}
-    ]
+  "La Jarocita": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "Alder",
+    "address": "9th & Alder",
+    "link": "https://goo.gl/maps/4AJtFz9zQs22",
+    "category": "Mexican",
+    "tags": "",
+    "notes": ""
+  },
+  "Huong's": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "Alder",
+    "address": "10th & Alder",
+    "link": "https://goo.gl/maps/eKJi6ZVUd9n",
+    "category": "Vietnamese",
+    "tags": "",
+    "notes": ""
+  },
+  "Rolling Gourmet Fusion": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "Alder",
+    "address": "9th & Washington",
+    "link": "https://goo.gl/maps/NCz83gxPYbo",
+    "category": "Fusion",
+    "tags": "",
+    "notes": ""
+  },
+  "808 Grinds": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "Alder",
+    "address": "9th & Washington",
+    "link": "https://goo.gl/maps/d1iNYLysuJ12",
+    "category": "Hawaiian",
+    "tags": "",
+    "notes": ""
+  },
+  "Gyro Place": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "Alder",
+    "address": "9th & Alder",
+    "link": "https://goo.gl/maps/BzQotq7gCsy",
+    "category": "Egyptian",
+    "tags": "",
+    "notes": ""
+  },
+  "Nong's Kao Man Gai": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "Alder",
+    "address": "10th & Alder",
+    "link": "https://goo.gl/maps/kpHSFx2jMnF2",
+    "category": "Thai",
+    "tags": "",
+    "notes": ""
+  },
+  "Noodle House": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "Alder",
+    "address": "9th & Washington",
+    "link": "https://goo.gl/maps/Xei32gsMBbs",
+    "category": "Chinese",
+    "tags": "",
+    "notes": ""
+  },
+  "E-San": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "Alder",
+    "address": "10th & Alder",
+    "link": "https://goo.gl/maps/122DPrUPfQJ2",
+    "category": "Thai",
+    "tags": "",
+    "notes": ""
+  },
+  "Grilled Cheese Grill": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "Alder",
+    "address": "10th & Alder",
+    "link": "https://goo.gl/maps/JwzPHmtc3LL2",
+    "category": "American",
+    "tags": "",
+    "notes": ""
+  },
+  "Tito's Burritos": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "Alder",
+    "address": "10th & Alder",
+    "link": "https://goo.gl/maps/zqCWR1oSPT22",
+    "category": "Mexican",
+    "tags": "",
+    "notes": ""
+  },
+  "Wolf and Bear's": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "Alder",
+    "address": "10th & Alder",
+    "link": "https://goo.gl/maps/VyT1HdciiZt",
+    "category": "Mediterranean ",
+    "tags": "",
+    "notes": ""
+  },
+  "The Whole Bowl": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "Pioneer Square",
+    "address": "Broadway & Yamhill",
+    "link": "https://goo.gl/maps/mLXB3xHJkHF2",
+    "category": "Fusion",
+    "tags": "",
+    "notes": ""
+  },
+  "Burger Stevens": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "Pioneer Square",
+    "address": "Broadway & Yamhill",
+    "link": "https://goo.gl/maps/7aEKkrRm7Nv",
+    "category": "American",
+    "tags": "",
+    "notes": ""
+  },
+  "Fried Egg I'm In Love": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "Pioneer Square",
+    "address": "Broadway & Yamhill",
+    "link": "https://goo.gl/maps/ZPdwVvXxBo62",
+    "category": "American",
+    "tags": "",
+    "notes": ""
+  },
+  "Stretch the Noodle": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "3rd Avenue",
+    "address": "3rd & Washington",
+    "link": "https://goo.gl/maps/hyjKe3BKm6H2",
+    "category": "Chinese",
+    "tags": "",
+    "notes": ""
+  },
+  "Greenleaf": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "",
+    "address": "6th & Morrison",
+    "link": "https://goo.gl/maps/1wfwr9db2GF2",
+    "category": "Health Food",
+    "tags": "",
+    "notes": ""
+  },
+  "Tasty n Alder": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "",
+    "address": "12th & Alder",
+    "link": "https://goo.gl/maps/ciWsvmzMt2K2",
+    "category": "American",
+    "tags": "",
+    "notes": ""
+  },
+  "La Jarocha": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "",
+    "address": "4th & Pine",
+    "link": "https://goo.gl/maps/ocsenQoC9Cz",
+    "category": "Mexican",
+    "tags": "",
+    "notes": ""
+  },
+  "Bamboo Sushi": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "",
+    "address": "12th & Stark",
+    "link": "https://goo.gl/maps/LgXhgY6VvAn",
+    "category": "Japanese",
+    "tags": "",
+    "notes": ""
+  },
+  "Shigezo": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "",
+    "address": "9th & Salmon",
+    "link": "https://goo.gl/maps/SWveaizexwR2",
+    "category": "Japanese",
+    "tags": "",
+    "notes": ""
+  },
+  "Habibi": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "",
+    "address": "10th & Morrison",
+    "link": "https://goo.gl/maps/qGpKhT14Qjn",
+    "category": "Lebanese",
+    "tags": "",
+    "notes": ""
+  },
+  "Mayas Taqueria": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "",
+    "address": "10th & Morrison",
+    "link": "https://goo.gl/maps/vibzZYQZUdL2",
+    "category": "Mexican",
+    "tags": "",
+    "notes": ""
+  },
+  "Southpark": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "",
+    "address": "9th & Salmon",
+    "link": "https://goo.gl/maps/vuGRKpigk1p",
+    "category": "Seafood",
+    "tags": "",
+    "notes": ""
+  },
+  "Darsalam": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "",
+    "address": "4th & Alder",
+    "link": "https://goo.gl/maps/NtwRiDc27RK2",
+    "category": "Iraqi",
+    "tags": "",
+    "notes": ""
+  },
+  "Addys Sandwich Bar": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "",
+    "address": "10th & Taylor",
+    "link": "https://goo.gl/maps/DLNBnDopK522",
+    "category": "American",
+    "tags": "",
+    "notes": ""
+  },
+  "Thai Peacock": {
+    "name": "",
+    "open": true,
+    "type": "",
+    "location": "",
+    "address": "9th & Oak",
+    "link": "https://goo.gl/maps/TD4CfEYiN4L2",
+    "category": "Thai",
+    "tags": "",
+    "notes": ""
+  }
 }
