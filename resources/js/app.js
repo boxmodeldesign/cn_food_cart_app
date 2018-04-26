@@ -5,6 +5,7 @@ class App extends React.Component {
         this.chooseRandomly = this.chooseRandomly.bind(this);
         this.notChooseRamdonly = this.notChooseRamdonly.bind(this);
         this.getCuisine = this.getCuisine.bind(this);
+        this.getFoodTypes = this.getFoodTypes.bind(this);
         this.state = {
             message: "Hello World!",
             chooseRandomly: false,
@@ -28,10 +29,39 @@ class App extends React.Component {
         var openData = new XMLHttpRequest();
         openData.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                scope.setState( {data: JSON.parse(this.responseText)} );
+                //parse the not-quite-right JSON to match our previous structure
+                var raw = JSON.parse(this.responseText);
+                var clean = [];
+                raw.forEach(item => {
+                    var temp = item;
+                    temp.dishes = [];
+                    for (var i=1;i<4;i++) {
+                        // check that data exists
+                        if (temp["dishname"+i] != "" && temp["dishname"+i] != undefined) {
+                            var d = {};
+                            // set the temp variable props
+                            d.name = temp["dishname"+i];
+                            d.type = temp["dishtype"+i]
+                            // array-ify the tags
+                            d.tags = temp["dishtags"+i].split(", ");
+                            d.notes = temp["dishnotes"+i];
+                            // push it to dishes
+                            temp.dishes.push(d);
+                            // clear the useless props
+                            temp["dishname"+i] = "";
+                            temp["dishtype"+i] = "";
+                            temp["dishtags"+i] = "";
+                            temp["dishnotes"+i] = "";
+                        }
+                    }
+                    // push the formatted object to the clean array
+                    clean.push(temp);
+                });
+                // set the state to the polished array
+                scope.setState( {data: clean} );
             }
         }
-        openData.open("get", "resources/data/src.json", true);
+        openData.open("get", "resources/data/test.json", true);
         openData.send();
     }
     updateFilter(filter, value) {
@@ -70,17 +100,34 @@ class App extends React.Component {
         return cuisines;
     }
 
+    getFoodTypes() {
+        var data = this.state.data;
+        var cuisine = this.state.filters.cuisine;
+        var foods = [];
+        data.forEach(cart => {
+            if (cart.category == cuisine) {
+                for (var i=0; i<cart.dishes.length; i++) {
+                    if (foods.indexOf(cart.dishes[i].type) == -1) {
+                        foods.push(cart.dishes[i].type);
+                    }
+                }
+            }
+        });
+        return foods;
+    }
+
     render() {
         const msg = this.state.message;
         const filters = this.state.filters;
         const data = this.state.data;
         const randomEatery = this.state.randomEatery;
         var cuisines = this.getCuisine();
+        var foodTypes = this.getFoodTypes();
 
         return (
             <div className="row">
                 <div className="col-md-3">
-                    <FilterSetup filters={filters} handleChange={this.updateFilter} chooseRandomly={this.chooseRandomly} cuisineList={cuisines} />
+                    <FilterSetup filters={filters} handleChange={this.updateFilter} chooseRandomly={this.chooseRandomly} cuisineList={cuisines} foodList={foodTypes} />
                 </div>
                 <div className="col-md-8 offset-md-1">
                     {this.state.chooseRandomly === true 

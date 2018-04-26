@@ -18,11 +18,12 @@ class CartList extends React.Component {
         var filters = this.props.filters;
         // test for "cart" v "restaurant"
         if (filters.cartsOnly) {
-            if (cart.type != "cart") {
+            if (cart.type.toLowerCase() != "cart") {
                 console.log(cart.name + " failed at filter 'cartsOnly': "+cart.type);
                 return false;
             }
         }
+        /* BEn - removing for now since we need to refactor for location vs. address
         // test for location
         if (filters.mainSquare) {
             if (cart.location != "main") {
@@ -30,6 +31,7 @@ class CartList extends React.Component {
                 return false;
             }
         }
+        */
         // test for cuisine
         if (filters.cuisine != undefined && filters.cuisine != "") {
             if (cart.category != filters.cuisine) {
@@ -38,16 +40,18 @@ class CartList extends React.Component {
             }
         }
         // test for food type - getting ahead of myself
-        /*var match = false;
-        for (var i=0; i<cart.dishes.length; i++) {
-            if (cart.dishes[i].type == filters.foodType) {
-                match = true;
-                break;
+        if (filters.foodType != "") {
+            var match = false;
+            for (var i=0; i<cart.dishes.length; i++) {
+                if (cart.dishes[i].type == filters.foodType) {
+                    match = true;
+                    break;
+                }
+            }
+            if (!match) {
+                return false;
             }
         }
-        if (!match) {
-            return false;
-        }*/
         // test for veggie options
         if (filters.meat) {
             if (!this.checkTags(cart.dishes, "M")) {

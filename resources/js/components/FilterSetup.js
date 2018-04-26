@@ -10,6 +10,7 @@ class FilterSetup extends React.Component {
         const filters = this.props.filters;
         const chooseRandomly = this.props.chooseRandomly;
         const cuisineList = this.props.cuisineList;
+        const foodList = this.props.foodList;
 
         return (
             <form>
@@ -21,6 +22,7 @@ class FilterSetup extends React.Component {
                 <div className="form-group">
                     <strong>Type of food:</strong>
                     <FilterDropdown noLabel={true} label="Any cuisine" options={cuisineList} name="cuisine" value={filters.cuisine} handleChange={this.updateFilter} />
+                    <FilterDropdown noLabel={true} label="Any dish" options={foodList} name="foodType" value={filters.foodType} handleChange={this.updateFilter} />
                 </div>
                 <div className="form-group">
                     <strong>Dietary options:</strong>
