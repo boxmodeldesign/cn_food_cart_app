@@ -191,14 +191,14 @@
       "address": "Broadway & Yamhill",
       "link": "https://goo.gl/maps/7aEKkrRm7Nv",
       "category": "American",
-      "dishname1": "Veggie Burger",
+      "dishname1": "Double Cheeseburger",
       "dishtype1": "Sandwich",
-      "dishtags1": "V, VG",
-      "dishnotes1": "high quality standard burgers and fries. Everything at this cart is good. The veggie burger can be made vegan with avocado spread. Fries are $3 extra but so worth it.",
-      "dishname2": "Hamburger",
+      "dishtags1": "M",
+      "dishnotes1": "High quality standard burgers and fries. This cart offers a full list of add-ons (avocado, egg, bacon, etc.). The double with fries is a LOT of food, but very good.",
+      "dishname2": "Veggie Burger",
       "dishtype2": "Sandwich",
-      "dishtags2": "M",
-      "dishnotes2": "High quality standard burgers and fries. This cart offers a full list of add-ons (avocado, egg, bacon, etc.). You can do a double here as well."
+      "dishtags2": "V, VG",
+      "dishnotes2": "High quality standard burgers and fries. Everything at this cart is good. The veggie burger can be made vegan with avocado spread. Fries are $3 extra but so worth it."
   },
   {
       "name": "Fried Egg I'm In Love",
@@ -233,10 +233,10 @@
       "address": "6th & Morrison",
       "link": "https://goo.gl/maps/1wfwr9db2GF2",
       "category": "Health Food",
-      "dishname1": "banana coconut oatmeal bowl",
+      "dishname1": "Banana Coconut Oatmeal Bowl",
       "dishtype1": "Oatmeal",
       "dishtags1": "V, VG, GF",
-      "dishnotes1": "you can ask for gluten free oatmeal for an extra few bucks. located off pioneer square. absolutely two meals for the price of one."
+      "dishnotes1": "You can ask for gluten free oatmeal for an extra few bucks. located off pioneer square. absolutely two meals for the price of one."
   },
   {
       "name": "Tasty n Alder",

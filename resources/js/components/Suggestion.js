@@ -12,7 +12,7 @@ class Suggestion extends React.Component {
                 <p className="text-muted">{eatery.dishes[0].notes}</p>
 
                 <p>
-                    <a href={eatery.link} target="_blank" title={"See "+eatery.name+" on the map"}><i className="fa fa-map-pin"></i> {eatery.location}</a>
+                    <a href={eatery.link} target="_blank" title={"See "+eatery.name+" on the map"}><i className="fa fa-map-pin"></i> {eatery.address}</a>
                 </p>
 
                 {/* This will change the 'chooseRandomly' state to 'false' to bring back the CartList view */}
