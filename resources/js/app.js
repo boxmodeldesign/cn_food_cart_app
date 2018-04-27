@@ -6,6 +6,7 @@ class App extends React.Component {
         this.notChooseRamdonly = this.notChooseRamdonly.bind(this);
         this.getCuisine = this.getCuisine.bind(this);
         this.getFoodTypes = this.getFoodTypes.bind(this);
+        this.cleanJSON = this.cleanJSON.bind(this);
         this.state = {
             chooseRandomly: false,
             randomEatery: null,
@@ -23,39 +24,42 @@ class App extends React.Component {
             data: []
         };
     }
+    cleanJSON(raw) {
+        var clean = [];
+        raw.forEach(item => {
+            var temp = item;
+            temp.dishes = [];
+            for (var i=1;i<4;i++) {
+                // check that data exists
+                if (temp["dishname"+i] != "" && temp["dishname"+i] != undefined) {
+                    var d = {};
+                    // set the dish props
+                    d.name = temp["dishname"+i];
+                    d.type = temp["dishtype"+i]
+                    // array-ify the tags
+                    d.tags = temp["dishtags"+i].split(", ");
+                    d.notes = temp["dishnotes"+i];
+                    // push it to dishes
+                    temp.dishes.push(d);
+                    // clear the useless props
+                    temp["dishname"+i] = "";
+                    temp["dishtype"+i] = "";
+                    temp["dishtags"+i] = "";
+                    temp["dishnotes"+i] = "";
+                }
+            }
+            // push the formatted object to the clean array
+            clean.push(temp);
+        });
+        return clean;
+    }
     componentWillMount() {
         var scope = this;
         var openData = new XMLHttpRequest();
         openData.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 //parse the not-quite-right JSON to match our previous structure
-                var raw = JSON.parse(this.responseText);
-                var clean = [];
-                raw.forEach(item => {
-                    var temp = item;
-                    temp.dishes = [];
-                    for (var i=1;i<4;i++) {
-                        // check that data exists
-                        if (temp["dishname"+i] != "" && temp["dishname"+i] != undefined) {
-                            var d = {};
-                            // set the dish props
-                            d.name = temp["dishname"+i];
-                            d.type = temp["dishtype"+i]
-                            // array-ify the tags
-                            d.tags = temp["dishtags"+i].split(", ");
-                            d.notes = temp["dishnotes"+i];
-                            // push it to dishes
-                            temp.dishes.push(d);
-                            // clear the useless props
-                            temp["dishname"+i] = "";
-                            temp["dishtype"+i] = "";
-                            temp["dishtags"+i] = "";
-                            temp["dishnotes"+i] = "";
-                        }
-                    }
-                    // push the formatted object to the clean array
-                    clean.push(temp);
-                });
+                var clean = scope.cleanJSON(JSON.parse(this.responseText));
                 // set the state to the polished array
                 scope.setState( {data: clean} );
             }
