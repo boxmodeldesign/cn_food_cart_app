@@ -6,13 +6,14 @@ class App extends React.Component {
         this.notChooseRamdonly = this.notChooseRamdonly.bind(this);
         this.getCuisine = this.getCuisine.bind(this);
         this.getFoodTypes = this.getFoodTypes.bind(this);
+        this.getLocations = this.getLocations.bind(this);
         this.cleanJSON = this.cleanJSON.bind(this);
         this.state = {
             chooseRandomly: false,
             randomEatery: null,
             filters: {
                 cartsOnly: false,
-                mainSquare: false,
+                location: "",
                 cuisine: "",
                 foodType: "",
                 // If you add a new filter based on dish tags, be sure to do so here, in <CartList />, <Cart />, and <FilterSetup />
@@ -35,7 +36,7 @@ class App extends React.Component {
                     var d = {};
                     // set the dish props
                     d.name = temp["dishname"+i];
-                    d.type = temp["dishtype"+i]
+                    d.type = temp["dishtype"+i];
                     // array-ify the tags
                     d.tags = temp["dishtags"+i].split(", ");
                     d.notes = temp["dishnotes"+i];
@@ -133,6 +134,19 @@ class App extends React.Component {
         return foods.sort();
     }
 
+    getLocations() {
+        var data = this.state.data;
+        var locs = [];
+        data.forEach(cart => {
+            if (cart.type.toLowerCase() == "cart") {
+                if (locs.indexOf(cart.location) == -1) {
+                    locs.push(cart.location);
+                }
+            }
+        });
+        return locs.sort();
+    }
+
     render() {
         const msg = this.state.message;
         const filters = this.state.filters;
@@ -140,11 +154,12 @@ class App extends React.Component {
         const randomEatery = this.state.randomEatery;
         var cuisines = this.getCuisine();
         var foodTypes = this.getFoodTypes();
+        var locations = this.getLocations();
 
         return (
             <div className="row">
                 <div className="col-md-3">
-                    <FilterSetup filters={filters} handleChange={this.updateFilter} chooseRandomly={this.chooseRandomly} cuisineList={cuisines} foodList={foodTypes} />
+                    <FilterSetup filters={filters} handleChange={this.updateFilter} chooseRandomly={this.chooseRandomly} cuisineList={cuisines} foodList={foodTypes} locationList={locations} />
                 </div>
                 <div className="col-md-8 offset-md-1">
                     {this.state.chooseRandomly === true 

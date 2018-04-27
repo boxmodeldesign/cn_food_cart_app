@@ -16,24 +16,23 @@ class CartList extends React.Component {
     }
     testFilters(cart) {
         var filters = this.props.filters;
-        // test for "cart" v "restaurant"
         if (filters.cartsOnly) {
+            // test for "cart" v "restaurant"
             if (cart.type.toLowerCase() != "cart") {
                 //console.log(cart.name + " failed at filter 'cartsOnly': "+cart.type);
                 return false;
             }
-        }
-        /* Ben - removing for now since we need to refactor for location vs. address
-        // test for location
-        if (filters.mainSquare) {
-            if (cart.location != "main") {
-                console.log(cart.name + " failed at filter 'location': "+cart.location);
-                return false;
+            // test for location
+            if (filters.location != "") {
+                if (cart.location != filters.location) {
+                    //console.log(cart.name + " failed at filter 'location': "+cart.location);
+                    return false;
+                }
             }
         }
-        */
+        
         // test for cuisine
-        if (filters.cuisine != undefined && filters.cuisine != "") {
+        if (filters.cuisine != "") {
             if (cart.category != filters.cuisine) {
                 //console.log(cart.name + " failed at filter: 'cuisine'");
                 return false;

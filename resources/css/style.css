@@ -1,5 +1,9 @@
 .custom-control-label {
     cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .cart:hover {
@@ -18,6 +22,12 @@
 }
 .badge-gf {
     background-color: #a78228;
+}
+
+.check-subsection {
+    border-left: 1px solid #555;
+    padding-left: 15px;
+    margin-left: 7px;
 }
 
 .cart_chevron{

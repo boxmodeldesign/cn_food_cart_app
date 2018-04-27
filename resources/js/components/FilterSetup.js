@@ -11,15 +11,22 @@ class FilterSetup extends React.Component {
         const chooseRandomly = this.props.chooseRandomly;
         const cuisineList = this.props.cuisineList;
         const foodList = this.props.foodList;
+        const locationList = this.props.locationList;
+        if (filters.cartsOnly) {
+            $(".slideToggle").collapse("show");
+        } else {
+            $(".slideToggle").collapse("hide");
+        }
 
         return (
             <form>
                 <div className="form-group">
                     <strong>Show me:</strong>
                     <FilterCheckbox label="Carts only" name="cartsOnly" value={filters.cartsOnly} handleChange={this.updateFilter} />
-                    {/* Ben - removed for now
-                    <FilterCheckbox label="Alder square only" name="mainSquare" value={filters.mainSquare} handleChange={this.updateFilter} />
-                    */}
+                    <div className="slideToggle collapse">
+                        <strong>Located at:</strong>
+                        <FilterDropdown noLabel={true} label="Any location" options={locationList} name="location" value={filters.location} handleChange={this.updateFilter} />
+                    </div>
                 </div>
                 <div className="form-group">
                     <strong>Type of food:</strong>
