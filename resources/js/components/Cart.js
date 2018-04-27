@@ -71,7 +71,8 @@ class Cart extends React.Component {
             <div className="row mb-1">
                 <div className="card card-body cart" id="cart" data-toggle="collapse" data-target={"#"+name+"-expand"} aria-expanded="false" aria-controls={name+"-expand"} onClick={this.addActiveClass}>
                     <div className="row flex-wrap">
-                        <h4 className="col-auto mr-auto">{name}</h4>
+                        <h4 className="col-auto">{name}</h4>
+                        <h4 className="price-icon"> {cart.price}</h4>
                         <span className="icons col-auto">{icons}</span>
                     </div>
                     <p>Try the {dish.name}!</p>
