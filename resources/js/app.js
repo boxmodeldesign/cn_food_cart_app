@@ -6,23 +6,52 @@ class App extends React.Component {
         this.notChooseRamdonly = this.notChooseRamdonly.bind(this);
         this.getCuisine = this.getCuisine.bind(this);
         this.getFoodTypes = this.getFoodTypes.bind(this);
+        this.cleanJSON = this.cleanJSON.bind(this);
         this.state = {
-            message: "Hello World!",
             chooseRandomly: false,
             randomEatery: null,
             filters: {
-                cartsOnly: true,
+                cartsOnly: false,
                 mainSquare: false,
                 cuisine: "",
                 foodType: "",
                 // If you add a new filter based on dish tags, be sure to do so here, in <CartList />, <Cart />, and <FilterSetup />
                 meat: false,
-                veggie: true,
+                veggie: false,
                 vegan: false,
                 gf: false
             },
             data: []
         };
+    }
+    cleanJSON(raw) {
+        var clean = [];
+        raw.forEach(item => {
+            var temp = item;
+            temp.dishes = [];
+            for (var i=1;i<4;i++) {
+                // check that data exists
+                if (temp["dishname"+i] != "" && temp["dishname"+i] != undefined) {
+                    var d = {};
+                    // set the dish props
+                    d.name = temp["dishname"+i];
+                    d.type = temp["dishtype"+i]
+                    // array-ify the tags
+                    d.tags = temp["dishtags"+i].split(", ");
+                    d.notes = temp["dishnotes"+i];
+                    // push it to dishes
+                    temp.dishes.push(d);
+                    // clear the useless props
+                    temp["dishname"+i] = "";
+                    temp["dishtype"+i] = "";
+                    temp["dishtags"+i] = "";
+                    temp["dishnotes"+i] = "";
+                }
+            }
+            // push the formatted object to the clean array
+            clean.push(temp);
+        });
+        return clean;
     }
     componentWillMount() {
         var scope = this;
@@ -30,33 +59,7 @@ class App extends React.Component {
         openData.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 //parse the not-quite-right JSON to match our previous structure
-                var raw = JSON.parse(this.responseText);
-                var clean = [];
-                raw.forEach(item => {
-                    var temp = item;
-                    temp.dishes = [];
-                    for (var i=1;i<4;i++) {
-                        // check that data exists
-                        if (temp["dishname"+i] != "" && temp["dishname"+i] != undefined) {
-                            var d = {};
-                            // set the temp variable props
-                            d.name = temp["dishname"+i];
-                            d.type = temp["dishtype"+i]
-                            // array-ify the tags
-                            d.tags = temp["dishtags"+i].split(", ");
-                            d.notes = temp["dishnotes"+i];
-                            // push it to dishes
-                            temp.dishes.push(d);
-                            // clear the useless props
-                            temp["dishname"+i] = "";
-                            temp["dishtype"+i] = "";
-                            temp["dishtags"+i] = "";
-                            temp["dishnotes"+i] = "";
-                        }
-                    }
-                    // push the formatted object to the clean array
-                    clean.push(temp);
-                });
+                var clean = scope.cleanJSON(JSON.parse(this.responseText));
                 // set the state to the polished array
                 scope.setState( {data: clean} );
             }
@@ -68,6 +71,10 @@ class App extends React.Component {
         // Because we have to update the entire {filters} object when we setState, we need to update the changed filter in an intermediary and then pass that in.
         var newState = this.state.filters;
         newState[filter] = value;
+        // FoodType is an odd duck in that its options change depending on the value of cuisine, so this is a special check to see if cuisine has been changed and if so, clear foodType. If we build other co-dependent features, we should refactor this.
+        if (filter == "cuisine") {
+            newState.foodType = "";
+        }
         this.setState({ filters: newState });
     }
 
@@ -97,23 +104,33 @@ class App extends React.Component {
                 cuisines.push(cart.category);
             }
         });
-        return cuisines;
+        return cuisines.sort();
     }
 
     getFoodTypes() {
         var data = this.state.data;
         var cuisine = this.state.filters.cuisine;
         var foods = [];
-        data.forEach(cart => {
-            if (cart.category == cuisine) {
+        if (cuisine != "") {
+            data.forEach(cart => {
+                if (cart.category == cuisine) {
+                    for (var i=0; i<cart.dishes.length; i++) {
+                        if (foods.indexOf(cart.dishes[i].type) == -1) {
+                            foods.push(cart.dishes[i].type);
+                        }
+                    }
+                }
+            });
+        } else {
+            data.forEach(cart => {
                 for (var i=0; i<cart.dishes.length; i++) {
                     if (foods.indexOf(cart.dishes[i].type) == -1) {
                         foods.push(cart.dishes[i].type);
                     }
                 }
-            }
-        });
-        return foods;
+            });
+        }
+        return foods.sort();
     }
 
     render() {
