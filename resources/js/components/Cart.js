@@ -1,8 +1,11 @@
 class Cart extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {toggle: true};
         this.getIcons = this.getIcons.bind(this);
         this.getDish = this.getDish.bind(this);
+         this.addActiveClass = this.addActiveClass.bind(this);
+         const food = this.props.cart.dishes;
     }
     getIcons() {
         var dishes = this.props.cart.dishes;
@@ -23,7 +26,9 @@ class Cart extends React.Component {
         var dishes = this.props.cart.dishes;
         var filters = this.props.filters;
         var checks = [];
+        // state.filters names
         var against = ["meat", "veggie", "vegan", "gf"];
+        // tag names
         var tags = ["M", "V", "VG", "GF"];
         for (var i=0; i<against.length; i++) {
             if (filters[against[i]]) {
@@ -48,22 +53,45 @@ class Cart extends React.Component {
         // if no dish matched all filters, return the first one
         return dishes[0];
     }
+
+    getDishes() {
+        // Try to recommend a dish that matches all of the user's filters
+        var dishes = this.props.cart.dishes;
+
+        // if no dish matched all filters, return the first one
+        return dishes;
+    }
+
+    addActiveClass(){
+        this.setState((prevState) => ({
+        toggle: !prevState.toggle
+         })
+     );
+    }
     render() {
         const cart = this.props.cart;
         const name = cart.name;
         const dish = this.getDish();
+        const dishes = this.getDishes();
         var icons = this.getIcons();
         return (
             <div className="row mb-1">
-                <div className="card card-body cart" id="cart" data-toggle="collapse" data-target={"#"+name+"-expand"} aria-expanded="false" aria-controls={name+"-expand"}>
+                <div className="card card-body cart" id="cart" data-toggle="collapse" data-target={"#"+name+"-expand"} aria-expanded="false" aria-controls={name+"-expand"} onClick={this.addActiveClass}>
                     <div className="row flex-wrap">
                         <h4 className="col-auto mr-auto">{name}</h4>
                         <span className="icons col-auto">{icons}</span>
                     </div>
                     <p>Try the {dish.name}!</p>
-                    <span className="cart_chevron text-muted"> <i className="fa fa-chevron-down"></i></span>
+                    <span className="cart_chevron text-muted"> <i  className={this.state.toggle ? 'fa fa-chevron-down' : 'fa fa-chevron-down fa-rotate-180'} ></i></span>
                     <div className="collapse" id={name+"-expand"}>
                         <p className="text-muted">{dish.notes}</p>
+                        <ul >
+{this.props.cart.dishes.map((item)=>(
+<li key="{item.name}">
+{item.name}
+</li>
+))}
+</ul>
                         <p><a href={cart.link} target="_blank" title={"See "+name+" on the map"}><i className="fa fa-map-pin"></i> {cart.address}</a></p>
                     </div>
                 </div>

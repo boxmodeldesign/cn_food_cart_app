@@ -19,11 +19,11 @@ class CartList extends React.Component {
         // test for "cart" v "restaurant"
         if (filters.cartsOnly) {
             if (cart.type.toLowerCase() != "cart") {
-                console.log(cart.name + " failed at filter 'cartsOnly': "+cart.type);
+                //console.log(cart.name + " failed at filter 'cartsOnly': "+cart.type);
                 return false;
             }
         }
-        /* BEn - removing for now since we need to refactor for location vs. address
+        /* Ben - removing for now since we need to refactor for location vs. address
         // test for location
         if (filters.mainSquare) {
             if (cart.location != "main") {
@@ -35,7 +35,7 @@ class CartList extends React.Component {
         // test for cuisine
         if (filters.cuisine != undefined && filters.cuisine != "") {
             if (cart.category != filters.cuisine) {
-                console.log(cart.name + " failed at filter: 'cuisine'");
+                //console.log(cart.name + " failed at filter: 'cuisine'");
                 return false;
             }
         }
@@ -55,28 +55,28 @@ class CartList extends React.Component {
         // test for veggie options
         if (filters.meat) {
             if (!this.checkTags(cart.dishes, "M")) {
-                console.log(cart.name + " failed at filter 'meat'");
+                //console.log(cart.name + " failed at filter 'meat'");
                 return false;
             }
         }
         // test for veggie options
         if (filters.veggie) {
             if (!this.checkTags(cart.dishes, "V")) {
-                console.log(cart.name + " failed at filter 'veggie'");
+                //console.log(cart.name + " failed at filter 'veggie'");
                 return false;
             }
         }
         // test for vegan options
         if (filters.vegan) {
             if (!this.checkTags(cart.dishes, "VG")) {
-                console.log(cart.name + " failed at filter 'vegan'");
+                //console.log(cart.name + " failed at filter 'vegan'");
                 return false;
             }
         }
         // test for gluten-free options
         if (filters.gf) {
             if (!this.checkTags(cart.dishes, "GF")) {
-                console.log(cart.name + " failed at filter 'gf'");
+                //console.log(cart.name + " failed at filter 'gf'");
                 return false;
             }
         }
