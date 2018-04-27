@@ -23,7 +23,9 @@ class Cart extends React.Component {
         var dishes = this.props.cart.dishes;
         var filters = this.props.filters;
         var checks = [];
+        // state.filters names
         var against = ["meat", "veggie", "vegan", "gf"];
+        // tag names
         var tags = ["M", "V", "VG", "GF"];
         for (var i=0; i<against.length; i++) {
             if (filters[against[i]]) {
