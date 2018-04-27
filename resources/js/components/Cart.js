@@ -52,13 +52,7 @@ class Cart extends React.Component {
         return dishes[0];
     }
 
-    getDishes() {
-        // Try to recommend a dish that matches all of the user's filters
-        var dishes = this.props.cart.dishes;
 
-        // if no dish matched all filters, return the first one
-        return dishes;
-    }
 
     addActiveClass(){
         this.setState((prevState) => ({
@@ -70,7 +64,6 @@ class Cart extends React.Component {
         const cart = this.props.cart;
         const name = cart.name;
         const dish = this.getDish();
-        const dishes = this.getDishes();
         var icons = this.getIcons();
         return (
             <div className="row mb-1">
@@ -83,13 +76,6 @@ class Cart extends React.Component {
                     <span className="cart_chevron text-muted"> <i  className={this.state.toggle ? 'fa fa-chevron-down' : 'fa fa-chevron-down fa-rotate-180'} ></i></span>
                     <div className="collapse" id={name+"-expand"}>
                         <p className="text-muted">{dish.notes}</p>
-                        <ul >
-{this.props.cart.dishes.map((item)=>(
-<li key="{item.name}">
-{item.name}
-</li>
-))}
-</ul>
                         <p><a href={cart.link} target="_blank" title={"See "+name+" on the map"}><i className="fa fa-map-pin"></i> {cart.address}</a></p>
                     </div>
                 </div>
