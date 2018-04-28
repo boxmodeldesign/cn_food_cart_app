@@ -33,7 +33,7 @@ class CartList extends React.Component {
         
         // test for cuisine
         if (filters.cuisine != "") {
-            if (cart.category != filters.cuisine) {
+            if (cart.category.indexOf(filters.cuisine) == -1) {
                 //console.log(cart.name + " failed at filter: 'cuisine'");
                 return false;
             }
@@ -42,7 +42,7 @@ class CartList extends React.Component {
         if (filters.foodType != "") {
             var match = false;
             for (var i=0; i<cart.dishes.length; i++) {
-                if (cart.dishes[i].type == filters.foodType) {
+                if (cart.dishes[i].type.indexOf(filters.foodType) != -1) {
                     match = true;
                     break;
                 }

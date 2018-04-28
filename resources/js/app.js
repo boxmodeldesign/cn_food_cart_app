@@ -29,6 +29,7 @@ class App extends React.Component {
         var clean = [];
         raw.forEach(item => {
             var temp = item;
+            temp.category = item.category.split(", ");
             temp.dishes = [];
             for (var i=1;i<4;i++) {
                 // check that data exists
@@ -36,7 +37,7 @@ class App extends React.Component {
                     var d = {};
                     // set the dish props
                     d.name = temp["dishname"+i];
-                    d.type = temp["dishtype"+i];
+                    d.type = temp["dishtype"+i].split(", ");
                     // array-ify the tags
                     d.tags = temp["dishtags"+i].split(", ");
                     d.notes = temp["dishnotes"+i];
@@ -101,9 +102,11 @@ class App extends React.Component {
         var data = this.state.data;
         var cuisines = [];
         data.forEach(cart => {
-            if (cuisines.indexOf(cart.category) == -1) {
-                cuisines.push(cart.category);
-            }
+            for (var i=0; i<cart.category.length; i++) {
+                if (cuisines.indexOf(cart.category[i]) == -1) {
+                    cuisines.push(cart.category[i]);
+                }
+            };
         });
         return cuisines.sort();
     }
@@ -116,8 +119,10 @@ class App extends React.Component {
             data.forEach(cart => {
                 if (cart.category == cuisine) {
                     for (var i=0; i<cart.dishes.length; i++) {
-                        if (foods.indexOf(cart.dishes[i].type) == -1) {
-                            foods.push(cart.dishes[i].type);
+                        for (var j=0; j<cart.dishes[i].type.length; j++) {
+                            if (foods.indexOf(cart.dishes[i].type[j]) == -1) {
+                                foods.push(cart.dishes[i].type[j]);
+                            }
                         }
                     }
                 }
@@ -125,8 +130,10 @@ class App extends React.Component {
         } else {
             data.forEach(cart => {
                 for (var i=0; i<cart.dishes.length; i++) {
-                    if (foods.indexOf(cart.dishes[i].type) == -1) {
-                        foods.push(cart.dishes[i].type);
+                    for (var j=0; j<cart.dishes[i].type.length; j++) {
+                        if (foods.indexOf(cart.dishes[i].type[j]) == -1) {
+                            foods.push(cart.dishes[i].type[j]);
+                        }
                     }
                 }
             });

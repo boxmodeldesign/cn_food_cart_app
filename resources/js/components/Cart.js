@@ -4,8 +4,8 @@ class Cart extends React.Component {
         this.state = {toggle: true};
         this.getIcons = this.getIcons.bind(this);
         this.getDish = this.getDish.bind(this);
-         this.addActiveClass = this.addActiveClass.bind(this);
-         const food = this.props.cart.dishes;
+        this.addActiveClass = this.addActiveClass.bind(this);
+        const food = this.props.cart.dishes;
     }
     getIcons() {
         var dishes = this.props.cart.dishes;
@@ -56,11 +56,10 @@ class Cart extends React.Component {
 
 
 
-    addActiveClass(){
-        this.setState((prevState) => ({
-        toggle: !prevState.toggle
-         })
-     );
+    addActiveClass() {
+        this.setState( (prevState) => ({
+            toggle: !prevState.toggle
+        }) );
     }
     render() {
         const cart = this.props.cart;
