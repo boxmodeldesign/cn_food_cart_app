@@ -61,6 +61,8 @@ class Cart extends React.Component {
             toggle: !prevState.toggle
         }) );
     }
+
+
     render() {
         const cart = this.props.cart;
         const name = cart.name;
@@ -75,10 +77,12 @@ class Cart extends React.Component {
                         <span className="icons col-auto">{icons}</span>
                     </div>
                     <p><a href={cart.link} target="_blank" title={"See "+name+" on the map"}><i className="fa fa-map-pin"></i> {cart.address}</a></p>
-                    <span className="cart_chevron text-muted"> <i  className={this.state.toggle ? 'fa fa-chevron-down' : 'fa fa-chevron-down fa-rotate-180'} ></i></span>
+                    <span className="cart_chevron text-muted"><i className={this.state.toggle ? 'fa fa-chevron-down' : 'fa fa-chevron-down fa-rotate-180'}></i></span>
                     <div className="collapse" id={name+"-expand"}>
-                        <p>Try the {dish.name}!</p>
-                        <p className="text-muted">{dish.notes}</p>
+                        <div class="border m-3 p-3">
+                            <p>{dish.name}</p>
+                            <p className="text-muted">{dish.notes}</p>
+                        </div>
                     </div>
                 </div>
             </div>

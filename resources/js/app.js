@@ -87,7 +87,7 @@ class App extends React.Component {
         let maxEateries = this.state.data.length;
         let randNum = Math.floor(Math.random() * Math.floor(maxEateries));
 
-        // Choose a random index from the eatery data array 
+        // Choose a random index from the eatery data array
         let randomEatery = this.state.data[randNum];
 
         this.setState({chooseRandomly: true, randomEatery: randomEatery});
@@ -169,7 +169,7 @@ class App extends React.Component {
                     <FilterSetup filters={filters} handleChange={this.updateFilter} chooseRandomly={this.chooseRandomly} cuisineList={cuisines} foodList={foodTypes} locationList={locations} />
                 </div>
                 <div className="col-md-8 offset-md-1">
-                    {this.state.chooseRandomly === true 
+                    {this.state.chooseRandomly === true
                     ? <Suggestion randomEatery={randomEatery} goBack={this.notChooseRamdonly} />
                     : <CartList filters={filters} carts={data} />
                     }
