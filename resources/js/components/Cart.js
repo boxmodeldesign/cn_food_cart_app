@@ -74,11 +74,11 @@ class Cart extends React.Component {
                         <h4 className="price-icon"> {cart.price}</h4>
                         <span className="icons col-auto">{icons}</span>
                     </div>
-                    <p>Try the {dish.name}!</p>
+                    <p><a href={cart.link} target="_blank" title={"See "+name+" on the map"}><i className="fa fa-map-pin"></i> {cart.address}</a></p>
                     <span className="cart_chevron text-muted"> <i  className={this.state.toggle ? 'fa fa-chevron-down' : 'fa fa-chevron-down fa-rotate-180'} ></i></span>
                     <div className="collapse" id={name+"-expand"}>
+                        <p>Try the {dish.name}!</p>
                         <p className="text-muted">{dish.notes}</p>
-                        <p><a href={cart.link} target="_blank" title={"See "+name+" on the map"}><i className="fa fa-map-pin"></i> {cart.address}</a></p>
                     </div>
                 </div>
             </div>
