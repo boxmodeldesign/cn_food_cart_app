@@ -96,7 +96,7 @@ class Cart extends React.Component {
                     <p><a href={cart.link} target="_blank" title={"See "+name+" on the map"}><i className="fa fa-map-pin"></i> {cart.address}</a></p>
                     <span className="cart_chevron text-muted"><i className={this.state.toggle ? 'fa fa-chevron-down' : 'fa fa-chevron-down fa-rotate-180'}></i></span>
                     <div className="collapse" id={name+"-expand"}>
-                        <div class="border m-3 p-3">
+                        <div className="border m-3 p-3">
                             <p>{dish.name}</p>
                             <p className="text-muted">{dish.notes}</p>
                         </div>
