@@ -15,7 +15,7 @@ class Cart extends React.Component {
             x.push(dishes[i]);
         }
         return x.map( (dish, index) =>
-            <p>{dish.name} {dish.tags}</p>
+            <p key={dish.name+index}>{dish.name} {dish.tags}</p>
         );
     }
     getIcons() {
@@ -47,17 +47,22 @@ class Cart extends React.Component {
             }
         };
         for (var i=0; i<dishes.length; i++) {
-            if (dishes[i].tags.length >= checks.length) {
-                var match = true;
-                for (var j=0; j<checks.length; j++) {
-                    if (dishes[i].tags.indexOf(checks[j]) == -1) {
-                        match = false;
-                        break;
+            // first check that it's the right type of food
+            if (filters.foodType == "" || dishes[i].type.indexOf(filters.foodType) != -1) {
+                // then check that the dish even has enough tags to maybe work
+                if (dishes[i].tags.length >= checks.length) {
+                    var match = true;
+                    // then make sure it has all the ones it needs
+                    for (var j=0; j<checks.length; j++) {
+                        if (dishes[i].tags.indexOf(checks[j]) == -1) {
+                            match = false;
+                            break;
+                        }
                     }
-                }
-                // if a dish met all filters, return it as the featured dish
-                if (match) {
-                    return dishes[i];
+                    // if a dish met all filters, return it as the featured dish
+                    if (match) {
+                        return dishes[i];
+                    }
                 }
             }
         }
