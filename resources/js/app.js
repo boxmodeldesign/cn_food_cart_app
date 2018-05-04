@@ -165,6 +165,7 @@ class App extends React.Component {
 
         return (
             <div className="row">
+                <Header />
                 <div className="col-md-3">
                     <FilterSetup filters={filters} handleChange={this.updateFilter} chooseRandomly={this.chooseRandomly} cuisineList={cuisines} foodList={foodTypes} locationList={locations} />
                 </div>
@@ -174,6 +175,7 @@ class App extends React.Component {
                     : <CartList filters={filters} carts={data} />
                     }
                 </div>
+                <Footer />
             </div>
         );
     }
