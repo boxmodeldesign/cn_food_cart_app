@@ -10,13 +10,13 @@
             {
                 "name": "Chicken Burrito",
                 "type": "burrito",
-                "tags": ["meat"],
+                "tags": ["M"],
                 "notes": "Rice, beans, chicken. Real good."
             },
             {
                 "name": "Veggie Burrito",
                 "type": "Burrito",
-                "tags": ["veggie", "vegan"],
+                "tags": ["V", "VG"],
                 "notes": "Can be made vegan on request. Really great so-cal style burrito, which is rare in Portland."
             }
         ]
@@ -32,7 +32,7 @@
             {
                 "name": "Lunch Special",
                 "type": "Curry",
-                "tags": ["veggie", "vegan"],
+                "tags": ["V", "VG"],
                 "notes": "3 curries, rice, and naan. Try an iced chai for $2."
             }
         ]
@@ -48,7 +48,7 @@
             {
                 "name": "Banh Mi",
                 "type": "Sandwich",
-                "tags": ["veggie", "vegan", "meat"],
+                "tags": ["V", "VG", "M"],
                 "notes": "This is a full meal amount of food for $4. Also, it's really good."
             }
         ]
@@ -64,7 +64,7 @@
             {
                 "name": "Burger",
                 "type": "Sandwich",
-                "tags": ["veggie", "vegan", "meat"],
+                "tags": ["V", "VG", "M"],
                 "notes": "Everything at this cart is good. The veggie burger can be made vegan with avocado spread. Fries are $3 extra but so worth it."
             }
         ]
@@ -80,7 +80,7 @@
             {
                 "name": "Pad Thai",
                 "type": "Noodles",
-                "tags": ["veggie", "vegan", "meat", "gf"],
+                "tags": ["V", "VG", "M", "GF"],
                 "notes": "This cart is reliable, and they really do Pad Thai well. They have carts around town, but I think this is the best one. They accept custom orders, such as vegan, sub vegetables, brown rice, etc."
             }
         ]
@@ -96,23 +96,7 @@
             {
                 "name": "808 Fried Chicken",
                 "type": "Plate",
-                "tags": ["meat"],
-                "notes": "Really great comfort food. They do everything well, but this dish is the most popular."
-            }
-        ]
-    },
-    {
-        "name": "808 Grinds",
-        "open": "true",
-        "location": "9th and Washington",
-        "type": "cart",
-        "link": "https://goo.gl/maps/aREXdb7JEcn",
-        "category": "Hawaiian",
-        "dishes": [
-            {
-                "name": "808 Fried Chicken",
-                "type": "Plate",
-                "tags": ["meat"],
+                "tags": ["M"],
                 "notes": "Really great comfort food. They do everything well, but this dish is the most popular."
             }
         ]
@@ -128,7 +112,7 @@
             {
                 "name": "Falafel",
                 "type": "Wrap",
-                "tags": ["veggie", "vegan"],
+                "tags": ["V", "VG"],
                 "notes": "Portland-style Mediterranean food. This wrap has really great fresh veggies (fried egg plant too!), crispy falafel, and some an amazing tahini sauce with hummus."
             }
         ]
@@ -144,13 +128,13 @@
             {
                 "name": "Big Bowl",
                 "type": "Bowl",
-                "tags": ["veggie", "vegan"],
+                "tags": ["V", "VG"],
                 "notes": "This is the only thing they serve, in 2 sizes. One of Portland's most popular food carts, with a bunch of locations all over town. The sauce is reknowned and makes a simple dish something special. Can be requested vegan, they will give you extra avocado."
             }
         ]
     },
     {
-        "name": "Fried Egg I'm in Love",
+        "name": "Fried Egg I'm In Love",
         "open": "true",
         "location": "Pioneer Square",
         "type": "cart",
@@ -160,7 +144,7 @@
             {
                 "name": "Yolko Ono",
                 "type": "Sandwich",
-                "tags": ["vegetarian", "meat"],
+                "tags": ["V", "M"],
                 "notes": "Their signature dish, can be made vegatarian with veggie sausage."
             }
         ]
@@ -176,7 +160,7 @@
             {
                 "name": "Demo Plate",
                 "type": "test",
-                "tags": ["gf", "veggie", "vegan"],
+                "tags": ["GF", "V", "VG"],
                 "notes": "This one is an example."
             }
         ]

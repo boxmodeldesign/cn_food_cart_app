@@ -1,194 +1,181 @@
-class Cart extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-    render() {
-        const cart = this.props.cart;
-        const name = cart.name;
-        const dish = cart.dishes[0];
-        return (
-            <div className="row">
-                <div className="card card-body">
-                    <h4>{name}</h4>
-                    <p>Try the {dish.name}!</p>
-                </div>
-            </div>
-        );
-    }
-}
-
-class CartList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.makeList = this.makeList.bind(this);
-        this.testFilters = this.testFilters.bind(this);
-        this.checkTags = this.checkTags.bind(this);
-    }
-    checkTags(dishes, param) {
-        for (var i=0;i<dishes.length;i++) {
-            if (dishes[i].tags.indexOf(param) != -1) {
-                return true;
-            }
-        }
-        return false;
-    }
-    testFilters(cart) {
-        var filters = this.props.filters;
-        // test for "cart" v "restaurant"
-        if (filters.cartsOnly) {
-            if (cart.type != "cart") {
-                console.log(cart.name + " failed at filter 'cartsOnly': "+cart.type);
-                return false;
-            }
-        }
-        // test for location
-        if (filters.mainSquare) {
-            if (cart.location != "main") {
-                console.log(cart.name + " failed at filter 'location': "+cart.location);
-                return false;
-            }
-        }
-        // test for veggie options
-        if (filters.veggie) {
-            if (!this.checkTags(cart.dishes, "veggie")) {
-                console.log(cart.name + " failed at filter 'veggie'");
-                return false;
-            }
-        }
-        // test for vegan options
-        if (filters.vegan) {
-            if (!this.checkTags(cart.dishes, "vegan")) {
-                console.log(cart.name + " failed at filter 'vegan'");
-                return false;
-            }
-        }
-        // test for gluten-free options
-        if (filters.gf) {
-            if (!this.checkTags(cart.dishes, "gf")) {
-                console.log(cart.name + " failed at filter 'gf'");
-                return false;
-            }
-        }
-        // We made it!
-        return true;
-    }
-    makeList() {
-        var list = [];
-        this.props.carts.forEach(cart => {
-            if (this.testFilters(cart) && cart.open) {
-                list.push(cart);
-            }
-        });
-        return list.map( (item, index) =>
-            <Cart cart={item} key={"cart"+index} />
-        );
-    }
-    render() {
-        var carts = this.makeList();
-        return (
-            <div>
-                {carts}
-            </div>
-        );
-    }
-}
-
-class FilterCheckbox extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-        this.state = {checked: this.props.value};
-    }
-    handleChange(e) {
-        var val = e.target.checked;
-        this.setState( {checked: val} );
-        this.props.handleChange(this.props.name, val);
-    }
-    render() {
-        const id = this.props.name+"-filter";
-        return (
-            <div className="custom-control custom-checkbox form-check-inline">
-                <input className="custom-control-input" type="checkbox" checked={this.state.checked} onChange={this.handleChange} id={id}  />
-                <label className="custom-control-label" htmlFor={id}>{this.props.label}</label>
-            </div>
-        );
-    }
-}
-
-class FilterSetup extends React.Component {
-    constructor(props) {
-        super(props);
-        this.updateFilter = this.updateFilter.bind(this);
-    }
-    updateFilter(filter, value) {
-        this.props.handleChange(filter, value);
-    }
-    render() {
-        const filters = this.props.filters;
-        return (
-            <div className="form-group form-inline">
-                <FilterCheckbox label="Show only carts" name="cartsOnly" value={filters.cartsOnly} handleChange={this.updateFilter} />
-                <FilterCheckbox label="Main square only" name="mainSquare" value={filters.mainSquare} handleChange={this.updateFilter} />
-                <strong className="mr-2">Dietary options:</strong>
-                <FilterCheckbox label="Vegetarian" name="veggie" value={filters.veggie} handleChange={this.updateFilter} />
-                <FilterCheckbox label="Vegan" name="vegan" value={filters.vegan} handleChange={this.updateFilter} />
-                <FilterCheckbox label="Gluten-free" name="gf" value={filters.gf} handleChange={this.updateFilter} />
-            </div>
-        );
-    }
-}
-
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.parseData = this.parseData.bind(this);
         this.updateFilter = this.updateFilter.bind(this);
+        this.chooseRandomly = this.chooseRandomly.bind(this);
+        this.notChooseRamdonly = this.notChooseRamdonly.bind(this);
+        this.getCuisine = this.getCuisine.bind(this);
+        this.getFoodTypes = this.getFoodTypes.bind(this);
+        this.getLocations = this.getLocations.bind(this);
+        this.cleanJSON = this.cleanJSON.bind(this);
         this.state = {
-            message: "Hello World!",
+            chooseRandomly: false,
+            randomEatery: null,
             filters: {
-                cartsOnly: true,
-                mainSquare: false,
-                veggie: true,
+                cartsOnly: false,
+                location: "",
+                cuisine: "",
+                foodType: "",
+                // If you add a new filter based on dish tags, be sure to do so here, in <CartList />, <Cart />, and <FilterSetup />
+                meat: false,
+                veggie: false,
                 vegan: false,
                 gf: false
             },
             data: []
         };
     }
+    cleanJSON(raw) {
+        var clean = [];
+        raw.forEach(item => {
+            var temp = item;
+            temp.category = item.category.split(", ");
+            temp.dishes = [];
+            for (var i=1;i<4;i++) {
+                // check that data exists
+                if (temp["dishname"+i] != "" && temp["dishname"+i] != undefined) {
+                    var d = {};
+                    // set the dish props
+                    d.name = temp["dishname"+i];
+                    d.type = temp["dishtype"+i].split(", ");
+                    // array-ify the tags
+                    d.tags = temp["dishtags"+i].split(", ");
+                    d.notes = temp["dishnotes"+i];
+                    // push it to dishes
+                    temp.dishes.push(d);
+                    // clear the useless props
+                    temp["dishname"+i] = "";
+                    temp["dishtype"+i] = "";
+                    temp["dishtags"+i] = "";
+                    temp["dishnotes"+i] = "";
+                }
+            }
+            // push the formatted object to the clean array
+            clean.push(temp);
+        });
+        return clean;
+    }
     componentWillMount() {
-        var root = this;
-        //Bring this back to use the JSON
+        var scope = this;
         var openData = new XMLHttpRequest();
         openData.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                root.setState( {data: JSON.parse(this.responseText)} );
+                //parse the not-quite-right JSON to match our previous structure
+                var clean = scope.cleanJSON(JSON.parse(this.responseText));
+                // set the state to the polished array
+                scope.setState( {data: clean} );
             }
         }
-        openData.open("get", "resources/data/src.json", true);
+        openData.open("get", "resources/data/test.json", true);
         openData.send();
-    }
-    parseData(e) {
-        var a = JSON.parse(this.responseText);
-        console.log(a);
-        //this.setState( {data: a} );
     }
     updateFilter(filter, value) {
         // Because we have to update the entire {filters} object when we setState, we need to update the changed filter in an intermediary and then pass that in.
         var newState = this.state.filters;
         newState[filter] = value;
-        this.setState({ filters: newState }, function() {
-            //console.log(filter, this.state.filters[filter]);
-        });
+        // FoodType is an odd duck in that its options change depending on the value of cuisine, so this is a special check to see if cuisine has been changed and if so, clear foodType. If we build other co-dependent features, we should refactor this.
+        if (filter == "cuisine") {
+            newState.foodType = "";
+        }
+        this.setState({ filters: newState });
     }
+
+    chooseRandomly(e){
+        // Prevent the page from reloading
+        e.preventDefault();
+
+        let maxEateries = this.state.data.length;
+        let randNum = Math.floor(Math.random() * Math.floor(maxEateries));
+
+        // Choose a random index from the eatery data array
+        let randomEatery = this.state.data[randNum];
+
+        this.setState({chooseRandomly: true, randomEatery: randomEatery});
+    }
+
+    notChooseRamdonly(e){
+        e.preventDefault();
+        this.setState({chooseRandomly: false});
+    }
+
+    getCuisine() {
+        var data = this.state.data;
+        var cuisines = [];
+        data.forEach(cart => {
+            for (var i=0; i<cart.category.length; i++) {
+                if (cuisines.indexOf(cart.category[i]) == -1) {
+                    cuisines.push(cart.category[i]);
+                }
+            };
+        });
+        return cuisines.sort();
+    }
+
+    getFoodTypes() {
+        var data = this.state.data;
+        var cuisine = this.state.filters.cuisine;
+        var foods = [];
+        if (cuisine != "") {
+            data.forEach(cart => {
+                if (cart.category == cuisine) {
+                    for (var i=0; i<cart.dishes.length; i++) {
+                        for (var j=0; j<cart.dishes[i].type.length; j++) {
+                            if (foods.indexOf(cart.dishes[i].type[j]) == -1) {
+                                foods.push(cart.dishes[i].type[j]);
+                            }
+                        }
+                    }
+                }
+            });
+        } else {
+            data.forEach(cart => {
+                for (var i=0; i<cart.dishes.length; i++) {
+                    for (var j=0; j<cart.dishes[i].type.length; j++) {
+                        if (foods.indexOf(cart.dishes[i].type[j]) == -1) {
+                            foods.push(cart.dishes[i].type[j]);
+                        }
+                    }
+                }
+            });
+        }
+        return foods.sort();
+    }
+
+    getLocations() {
+        var data = this.state.data;
+        var locs = [];
+        data.forEach(cart => {
+            if (cart.type.toLowerCase() == "cart") {
+                if (locs.indexOf(cart.location) == -1) {
+                    locs.push(cart.location);
+                }
+            }
+        });
+        return locs.sort();
+    }
+
     render() {
         const msg = this.state.message;
         const filters = this.state.filters;
         const data = this.state.data;
+        const randomEatery = this.state.randomEatery;
+        var cuisines = this.getCuisine();
+        var foodTypes = this.getFoodTypes();
+        var locations = this.getLocations();
+
         return (
-            <div>
-                {msg}
-                <FilterSetup filters={filters} handleChange={this.updateFilter} />
-                <CartList filters={filters} carts={data} />
+            <div className="row">
+                <Header />
+                <div className="col-md-3">
+                    <FilterSetup filters={filters} handleChange={this.updateFilter} chooseRandomly={this.chooseRandomly} cuisineList={cuisines} foodList={foodTypes} locationList={locations} />
+                </div>
+                <div className="col-md-8 offset-md-1">
+                    {this.state.chooseRandomly === true
+                    ? <Suggestion randomEatery={randomEatery} goBack={this.notChooseRamdonly} />
+                    : <CartList filters={filters} carts={data} />
+                    }
+                </div>
+                <Footer />
             </div>
         );
     }

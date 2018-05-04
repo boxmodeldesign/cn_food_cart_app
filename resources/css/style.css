@@ -1,0 +1,60 @@
+.custom-control-label {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.cart:hover {
+    cursor: pointer;
+    background-color: #eee;
+}
+
+.badge-m {
+    background-color: #a72828;
+}
+.badge-v {
+    background-color: #4fa728;
+}
+.badge-vg {
+    background-color: #225d08;
+}
+.badge-gf {
+    background-color: #a78228;
+}
+
+.check-subsection {
+    border-left: 1px solid #555;
+    padding-left: 15px;
+    margin-left: 7px;
+}
+
+.cart_chevron{
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
+
+.row + .no-results {
+    display: none;
+}
+
+.price-icon{
+    margin-right: auto !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .price-icon{
+        margin-left: auto !important;
+        margin-right: 1rem !important;
+    }
+    .icons {
+        display: block;
+        width: 100%;
+        margin-left: -.5rem;
+    }
+    #app-title{
+        font-size: 2rem;
+    }
+}
