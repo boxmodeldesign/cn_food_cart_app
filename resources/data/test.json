@@ -1,5 +1,23 @@
 [
     {
+        "name": "Shanghai's Best",
+        "open": true,
+        "type": "Cart",
+        "location": "Alder",
+        "address": "9th & Alder",
+        "link": "https://goo.gl/maps/3pDmiaGXRKm",
+        "category": "Chinese",
+        "price": "$",
+        "dishname1": "Pork Shengjianbao (Bao)",
+        "dishtype1": "Dumplings",
+        "dishtags1": "M",
+        "dishnotes1": "Reslly great authentic street-food style dumplings. The pan fried are the way to go here, but I'm sure the steamed ones are good too. Don't forget to add chili oil!",
+        "dishname2": "Veggie Shengjianbao (Bao)",
+        "dishtype2": "Dumplings",
+        "dishtags2": "V",
+        "dishnotes2": "The vegetarian option here is really good, but they contain egg. The pan fried are the way to go here, but I'm sure the steamed ones are good too. Don't forget to add chili oil!"
+    },
+    {
         "name": "La Jarocita",
         "open": true,
         "type": "Cart",
