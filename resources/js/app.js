@@ -16,6 +16,7 @@ class App extends React.Component {
                 location: "",
                 cuisine: "",
                 foodType: "",
+                price: [],
                 // If you add a new filter based on dish tags, be sure to do so here, in <CartList />, <Cart />, and <FilterSetup />
                 meat: false,
                 veggie: false,
