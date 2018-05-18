@@ -8,7 +8,7 @@
 
 .cart:hover {
     cursor: pointer;
-    background-color: #eee;
+    /* background-color: #eee; */
 }
 
 .badge-m {
@@ -36,7 +36,7 @@
     right: 20px;
 }
 
-.row + .no-results {
+.cart-wrapper + .no-results {
     display: none;
 }
 

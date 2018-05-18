@@ -15,9 +15,12 @@ class Cart extends React.Component {
             x.push(dishes[i]);
         }
         return x.map( (dish, index) =>
-            <div key={dish.name+index}>
-                <p>{dish.name} {dish.tags}</p>
-                <p className="text-muted">{dish.notes}</p>
+            <div key={dish.name+index} className="border p-3 mb-2">
+                <p>
+                    {dish.name}&nbsp;
+                    {dish.tags.sort().map( (tag, index) => <span className={"ml-2 font-weight-normal text-light badge badge-pill badge-"+tag.toLowerCase()} key={dish.name+"-"+tag}>{tag}</span> )}
+                </p>
+                <p className="text-muted mb-0">{dish.notes}</p>
             </div>
         );
     }
@@ -89,17 +92,17 @@ class Cart extends React.Component {
         const dish = this.getDish();
         var icons = this.getIcons();
         return (
-            <div className="row mb-1">
+            <div className="cart-wrapper mb-1">
                 <div className="card card-body cart" id="cart" data-toggle="collapse" data-target={"#"+name+"-expand"} aria-expanded="false" aria-controls={name+"-expand"} onClick={this.addActiveClass}>
                     <div className="row flex-wrap">
                         <h4 className="col-auto">{name}</h4>
-                        <h4 className="price-icon"> {cart.price}</h4>
+                        <h4 className="price-icon text-muted"> {cart.price}</h4>
                         <span className="icons col-auto">{icons}</span>
                     </div>
                     <p><a href={cart.link} target="_blank" title={"See "+name+" on the map"}><i className="fa fa-map-pin"></i> {cart.address}</a></p>
                     <span className="cart_chevron text-muted"><i className={this.state.toggle ? 'fa fa-chevron-down' : 'fa fa-chevron-down fa-rotate-180'}></i></span>
                     <div className="collapse" id={name+"-expand"}>
-                        <div className="border m-3 p-3">
+                        <div className="mb-3">
                             {dishes}
                         </div>
                     </div>
