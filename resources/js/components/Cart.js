@@ -5,17 +5,20 @@ class Cart extends React.Component {
         this.getIcons = this.getIcons.bind(this);
         this.getDish = this.getDish.bind(this);
         this.addActiveClass = this.addActiveClass.bind(this);
-        this.getSecondDish = this.getSecondDish.bind(this);
+        this.getMenuDishes = this.getMenuDishes.bind(this);
         const food = this.props.cart.dishes;
     }
-    getSecondDish() {
+    getMenuDishes() {
         var dishes = this.props.cart.dishes;
         var x = [];
         for (var i=0;i<dishes.length;i++) {
             x.push(dishes[i]);
         }
         return x.map( (dish, index) =>
-            <p key={dish.name+index}>{dish.name} {dish.tags}</p>
+            <div key={dish.name+index}>
+                <p>{dish.name} {dish.tags}</p>
+                <p className="text-muted">{dish.notes}</p>
+            </div>
         );
     }
     getIcons() {
@@ -82,7 +85,7 @@ class Cart extends React.Component {
     render() {
         const cart = this.props.cart;
         const name = cart.name;
-        const dishes = this.getSecondDish();
+        const dishes = this.getMenuDishes();
         const dish = this.getDish();
         var icons = this.getIcons();
         return (
@@ -97,10 +100,6 @@ class Cart extends React.Component {
                     <span className="cart_chevron text-muted"><i className={this.state.toggle ? 'fa fa-chevron-down' : 'fa fa-chevron-down fa-rotate-180'}></i></span>
                     <div className="collapse" id={name+"-expand"}>
                         <div className="border m-3 p-3">
-                            <p>{dish.name}</p>
-                            <p className="text-muted">{dish.notes}</p>
-                        </div>
-                        <div className="card card-body">
                             {dishes}
                         </div>
                     </div>
