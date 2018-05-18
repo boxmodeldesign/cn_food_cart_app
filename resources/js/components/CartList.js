@@ -30,7 +30,6 @@ class CartList extends React.Component {
                 }
             }
         }
-        
         // test for cuisine
         if (filters.cuisine != "") {
             if (cart.category.indexOf(filters.cuisine) == -1) {
@@ -43,6 +42,19 @@ class CartList extends React.Component {
             var match = false;
             for (var i=0; i<cart.dishes.length; i++) {
                 if (cart.dishes[i].type.indexOf(filters.foodType) != -1) {
+                    match = true;
+                    break;
+                }
+            }
+            if (!match) {
+                return false;
+            }
+        }
+        // test for price range
+        if (filters.price.length > 0) {
+            match = false;
+            for (i=0; i<filters.price.length; i++) {
+                if (cart.price == filters.price[i]) {
                     match = true;
                     break;
                 }
