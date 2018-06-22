@@ -16,6 +16,7 @@ class App extends React.Component {
                 location: "",
                 cuisine: "",
                 foodType: "",
+                price: [],
                 // If you add a new filter based on dish tags, be sure to do so here, in <CartList />, <Cart />, and <FilterSetup />
                 meat: false,
                 veggie: false,
@@ -117,7 +118,7 @@ class App extends React.Component {
         var foods = [];
         if (cuisine != "") {
             data.forEach(cart => {
-                if (cart.category == cuisine) {
+                if (cart.category.indexOf(cuisine) != -1) {
                     for (var i=0; i<cart.dishes.length; i++) {
                         for (var j=0; j<cart.dishes[i].type.length; j++) {
                             if (foods.indexOf(cart.dishes[i].type[j]) == -1) {
