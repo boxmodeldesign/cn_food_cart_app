@@ -84,14 +84,36 @@ class App extends React.Component {
     chooseRandomly(e){
         // Prevent the page from reloading
         e.preventDefault();
+        
+        // test area
+        let allDishes = [];
+        let randNum = 0;
+        let dataCopy = this.state.data.map(x => x);
+        
+        dataCopy.map(eatery => { 
+            return eatery.dishes.length === 1 
+            ? allDishes.push(eatery) 
+            : eatery.dishes.forEach(dish => allDishes.push({
+                'name': eatery.name,
+                'open': eatery.open,
+                'location': eatery.location,
+                'type': eatery.type,
+                'category': eatery.category,
+                'dishes': [dish],
+                'address': eatery.address, 
+                'link': eatery.link,
+                'price': eatery.price,
+            }))
+        });
+        
+        randNum = Math.floor(Math.random() * Math.floor(allDishes.length));
+        let randomDish = allDishes[randNum];
+        console.log('randomDish is', randomDish);
 
-        let maxEateries = this.state.data.length;
-        let randNum = Math.floor(Math.random() * Math.floor(maxEateries));
+        // end test area
 
-        // Choose a random index from the eatery data array
-        let randomEatery = this.state.data[randNum];
 
-        this.setState({chooseRandomly: true, randomEatery: randomEatery});
+        this.setState({chooseRandomly: true, randomEatery: randomDish});
     }
 
     notChooseRamdonly(e){
