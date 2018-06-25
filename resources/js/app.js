@@ -10,7 +10,7 @@ class App extends React.Component {
         this.cleanJSON = this.cleanJSON.bind(this);
         this.state = {
             chooseRandomly: false,
-            randomEatery: null,
+            randomDish: null,
             filters: {
                 cartsOnly: false,
                 location: "",
@@ -85,14 +85,15 @@ class App extends React.Component {
         // Prevent the page from reloading
         e.preventDefault();
         
-        // test area
         let allDishes = [];
         let randNum = 0;
-        let dataCopy = this.state.data.map(x => x);
         
-        dataCopy.map(eatery => { 
+        // flatten the data according to dishes
+        this.state.data.map(eatery => { 
             return eatery.dishes.length === 1 
+            // if an eatery has only rec'd dish push it into the array
             ? allDishes.push(eatery) 
+            // if an eatery has more than one rec'd dish push the dish and a copy of the eatery data into the array
             : eatery.dishes.forEach(dish => allDishes.push({
                 'name': eatery.name,
                 'open': eatery.open,
@@ -108,12 +109,8 @@ class App extends React.Component {
         
         randNum = Math.floor(Math.random() * Math.floor(allDishes.length));
         let randomDish = allDishes[randNum];
-        console.log('randomDish is', randomDish);
 
-        // end test area
-
-
-        this.setState({chooseRandomly: true, randomEatery: randomDish});
+        this.setState({chooseRandomly: true, randomDish: randomDish});
     }
 
     notChooseRamdonly(e){
@@ -181,7 +178,7 @@ class App extends React.Component {
         const msg = this.state.message;
         const filters = this.state.filters;
         const data = this.state.data;
-        const randomEatery = this.state.randomEatery;
+        const randomDish = this.state.randomDish;
         var cuisines = this.getCuisine();
         var foodTypes = this.getFoodTypes();
         var locations = this.getLocations();
@@ -194,7 +191,7 @@ class App extends React.Component {
                 </div>
                 <div className="col-md-8 offset-md-1">
                     {this.state.chooseRandomly === true
-                    ? <Suggestion randomEatery={randomEatery} goBack={this.notChooseRamdonly} />
+                    ? <Suggestion randomDish={randomDish} goBack={this.notChooseRamdonly} />
                     : <CartList filters={filters} carts={data} />
                     }
                 </div>

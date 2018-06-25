@@ -4,7 +4,7 @@ class Suggestion extends React.Component {
     }
 
     render() {
-        const eatery = this.props.randomEatery;
+        const eatery = this.props.randomDish;
         return(
             <div className="card card-body">
                 <h4>Head on over to <em>{eatery.name}</em> for the <em>{eatery.dishes[0].name}</em>.</h4>
