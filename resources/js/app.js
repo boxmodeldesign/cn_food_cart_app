@@ -23,7 +23,8 @@ class App extends React.Component {
                 vegan: false,
                 gf: false
             },
-            data: []
+            data: [],
+            unchosenDishes: []
         };
     }
     cleanJSON(raw) {
@@ -85,32 +86,54 @@ class App extends React.Component {
         // Prevent the page from reloading
         e.preventDefault();
         
-        let allDishes = [];
-        let randNum = 0;
-        
-        // flatten the data according to dishes
-        this.state.data.map(eatery => { 
-            return eatery.dishes.length === 1 
-            // if an eatery has only rec'd dish push it into the array
-            ? allDishes.push(eatery) 
-            // if an eatery has more than one rec'd dish push the dish and a copy of the eatery data into the array
-            : eatery.dishes.forEach(dish => allDishes.push({
-                'name': eatery.name,
-                'open': eatery.open,
-                'location': eatery.location,
-                'type': eatery.type,
-                'category': eatery.category,
-                'dishes': [dish],
-                'address': eatery.address, 
-                'link': eatery.link,
-                'price': eatery.price,
-            }))
-        });
-        
-        randNum = Math.floor(Math.random() * Math.floor(allDishes.length));
-        let randomDish = allDishes[randNum];
+        if (this.state.chooseRandomly === false) {
+            let allDishes = [];
 
-        this.setState({chooseRandomly: true, randomDish: randomDish});
+            // flatten the data according to dishes
+            this.state.data.map(eatery => { 
+                return eatery.dishes.length === 1 
+                // if an eatery has only one rec'd dish push it into the array
+                ? allDishes.push(eatery) 
+                // if an eatery has more than one rec'd dish push the dish and a copy of the eatery data into the array
+                : eatery.dishes.forEach(dish => allDishes.push({
+                    'name': eatery.name,
+                    'open': eatery.open,
+                    'location': eatery.location,
+                    'type': eatery.type,
+                    'category': eatery.category,
+                    'dishes': [dish],
+                    'address': eatery.address, 
+                    'link': eatery.link,
+                    'price': eatery.price,
+                }))
+            });
+            
+            // choose a random number to use as the index to choose a random dish from the array
+            let randNum = Math.floor(Math.random() * Math.floor(allDishes.length));
+            let randomDish = allDishes[randNum];
+            
+            // remove the randomly selected dish out of the array
+            allDishes.splice(randNum, 1);
+            /* or use this more cumbersome method
+            allDishes = allDishes.filter(dish => dish != randomDish);
+            */ 
+
+            this.setState({chooseRandomly: true, randomDish: randomDish, unchosenDishes: allDishes});
+        } else if (this.state.chooseRandomly === true && this.state.unchosenDishes.length !== 0) {
+            let allDishes = this.state.unchosenDishes.map(x => x);
+
+            // choose a random number to use as the index to choose a random dish from the array
+            let randNum = Math.floor(Math.random() * Math.floor(allDishes.length));
+            let randomDish = allDishes[randNum];
+
+            // remove the randomly selected dish out of the array
+            allDishes.splice(randNum, 1);
+
+            this.setState({chooseRandomly: true, randomDish: randomDish, unchosenDishes: allDishes});
+        } else {
+            console.log(this.state.chooseRandomly);
+            console.log('broke');
+        }
     }
 
     notChooseRamdonly(e){
