@@ -10,19 +10,21 @@ class App extends React.Component {
         this.cleanJSON = this.cleanJSON.bind(this);
         this.state = {
             chooseRandomly: false,
-            randomEatery: null,
+            randomDish: null,
             filters: {
                 cartsOnly: false,
                 location: "",
                 cuisine: "",
                 foodType: "",
+                price: [],
                 // If you add a new filter based on dish tags, be sure to do so here, in <CartList />, <Cart />, and <FilterSetup />
                 meat: false,
                 veggie: false,
                 vegan: false,
                 gf: false
             },
-            data: []
+            data: [],
+            unchosenDishes: []
         };
     }
     cleanJSON(raw) {
@@ -83,14 +85,60 @@ class App extends React.Component {
     chooseRandomly(e){
         // Prevent the page from reloading
         e.preventDefault();
+        
+        /* this.state.chooseRandomly needs to be set to true in each condition to keep the display from switching back to the CartList component. Setting this.state.randomDish will send a random dish for the Suggestion component to display. this.state.unchosenDishes is set keep track of what random dishes has yet to be displayed */
+        if (this.state.chooseRandomly === false) { /* the 'Choose for me!' button hasn't been clicked before */
+            let allDishes = [];
 
-        let maxEateries = this.state.data.length;
-        let randNum = Math.floor(Math.random() * Math.floor(maxEateries));
+            // flatten the data according to dishes
+            this.state.data.map(eatery => { 
+                return eatery.dishes.length === 1 
+                // if an eatery has only one rec'd dish push it into the array
+                ? allDishes.push(eatery) 
+                // if an eatery has more than one rec'd dish push the dish and a copy of the eatery data (to be able to print it in Suggestion.js) into the array
+                : eatery.dishes.forEach(dish => allDishes.push({
+                    'name': eatery.name,
+                    'open': eatery.open,
+                    'location': eatery.location,
+                    'type': eatery.type,
+                    'category': eatery.category,
+                    'dishes': [dish],
+                    'address': eatery.address, 
+                    'link': eatery.link,
+                    'price': eatery.price,
+                }))
+            });
+            
+            // choose a random number to use as the index to choose a random dish from the array
+            let randNum = Math.floor(Math.random() * Math.floor(allDishes.length));
+            let randomDish = allDishes[randNum];
+            
+            // remove the randomly selected dish out of the array
+            allDishes.splice(randNum, 1);
+            // or use this more cumbersome method
+            // allDishes = allDishes.filter(dish => dish != randomDish);
 
-        // Choose a random index from the eatery data array
-        let randomEatery = this.state.data[randNum];
+            this.setState({chooseRandomly: true, randomDish: randomDish, unchosenDishes: allDishes});
+        } else if (this.state.chooseRandomly === true && this.state.unchosenDishes.length !== 0) { /* the 'Choose for me!' button is pushed again */
+            let allDishes = this.state.unchosenDishes.map(x => x);
 
-        this.setState({chooseRandomly: true, randomEatery: randomEatery});
+            // choose a random number to use as the index to choose a random dish from the array
+            let randNum = Math.floor(Math.random() * Math.floor(allDishes.length));
+            let randomDish = allDishes[randNum];
+
+            // remove the randomly selected dish out of the array
+            allDishes.splice(randNum, 1);
+
+            this.setState({chooseRandomly: true, randomDish: randomDish, unchosenDishes: allDishes});
+        } else { /* all the dishes have been randomly cycled thru */
+            this.setState({
+                chooseRandomly: true,
+                randomDish: {
+                    // choosing randomDish.link to send a string that will get validated in Suggestion.js because no URL link should ever match this
+                    link: 'no more left to choose'
+                }
+            });
+        }
     }
 
     notChooseRamdonly(e){
@@ -117,7 +165,7 @@ class App extends React.Component {
         var foods = [];
         if (cuisine != "") {
             data.forEach(cart => {
-                if (cart.category == cuisine) {
+                if (cart.category.indexOf(cuisine) != -1) {
                     for (var i=0; i<cart.dishes.length; i++) {
                         for (var j=0; j<cart.dishes[i].type.length; j++) {
                             if (foods.indexOf(cart.dishes[i].type[j]) == -1) {
@@ -158,7 +206,7 @@ class App extends React.Component {
         const msg = this.state.message;
         const filters = this.state.filters;
         const data = this.state.data;
-        const randomEatery = this.state.randomEatery;
+        const randomDish = this.state.randomDish;
         var cuisines = this.getCuisine();
         var foodTypes = this.getFoodTypes();
         var locations = this.getLocations();
@@ -171,7 +219,7 @@ class App extends React.Component {
                 </div>
                 <div className="col-md-8 offset-md-1">
                     {this.state.chooseRandomly === true
-                    ? <Suggestion randomEatery={randomEatery} goBack={this.notChooseRamdonly} />
+                    ? <Suggestion randomDish={randomDish} goBack={this.notChooseRamdonly} />
                     : <CartList filters={filters} carts={data} />
                     }
                 </div>

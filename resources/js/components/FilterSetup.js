@@ -34,6 +34,12 @@ class FilterSetup extends React.Component {
                     <FilterDropdown noLabel={true} label="Any dish" options={foodList} name="foodType" value={filters.foodType} handleChange={this.updateFilter} />
                 </div>
                 <div className="form-group">
+                    <strong>Price range:</strong>
+                    <FilterCheckbox shared={true} label="Under $10 ($)" name="price" element="$" value={filters.price} handleChange={this.updateFilter} />
+                    <FilterCheckbox shared={true} label="$10-20 ($$)" name="price" element="$$" value={filters.price} handleChange={this.updateFilter} />
+                    <FilterCheckbox shared={true} label="Over $20 ($$$)" name="price" element="$$$" value={filters.price} handleChange={this.updateFilter} />
+                </div>
+                <div className="form-group">
                     <strong>Dietary options:</strong>
                     <FilterCheckbox label="Gluten-free" badge="GF" name="gf" value={filters.gf} handleChange={this.updateFilter} />
                     <FilterCheckbox label="Meat" badge="M" name="meat" value={filters.meat} handleChange={this.updateFilter} />

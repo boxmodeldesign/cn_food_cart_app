@@ -5,17 +5,23 @@ class Cart extends React.Component {
         this.getIcons = this.getIcons.bind(this);
         this.getDish = this.getDish.bind(this);
         this.addActiveClass = this.addActiveClass.bind(this);
-        this.getSecondDish = this.getSecondDish.bind(this);
+        this.getMenuDishes = this.getMenuDishes.bind(this);
         const food = this.props.cart.dishes;
     }
-    getSecondDish() {
+    getMenuDishes() {
         var dishes = this.props.cart.dishes;
         var x = [];
         for (var i=0;i<dishes.length;i++) {
             x.push(dishes[i]);
         }
         return x.map( (dish, index) =>
-            <p key={dish.name+index}>{dish.name} {dish.tags}</p>
+            <div key={dish.name+index} className="border p-3 mb-2">
+                <p>
+                    {dish.name}&nbsp;
+                    {dish.tags.sort().map( (tag, index) => <span className={"ml-2 font-weight-normal text-light badge badge-pill badge-"+tag.toLowerCase()} key={dish.name+"-"+tag}>{tag}</span> )}
+                </p>
+                <p className="text-muted mb-0">{dish.notes}</p>
+            </div>
         );
     }
     getIcons() {
@@ -82,25 +88,21 @@ class Cart extends React.Component {
     render() {
         const cart = this.props.cart;
         const name = cart.name;
-        const dishes = this.getSecondDish();
+        const dishes = this.getMenuDishes();
         const dish = this.getDish();
         var icons = this.getIcons();
         return (
-            <div className="row mb-1">
+            <div className="cart-wrapper mb-1">
                 <div className="card card-body cart" id="cart" data-toggle="collapse" data-target={"#"+name+"-expand"} aria-expanded="false" aria-controls={name+"-expand"} onClick={this.addActiveClass}>
                     <div className="row flex-wrap">
                         <h4 className="col-auto">{name}</h4>
-                        <h4 className="price-icon"> {cart.price}</h4>
+                        <h4 className="price-icon text-muted"> {cart.price}</h4>
                         <span className="icons col-auto">{icons}</span>
                     </div>
                     <p><a href={cart.link} target="_blank" title={"See "+name+" on the map"}><i className="fa fa-map-pin"></i> {cart.address}</a></p>
                     <span className="cart_chevron text-muted"><i className={this.state.toggle ? 'fa fa-chevron-down' : 'fa fa-chevron-down fa-rotate-180'}></i></span>
                     <div className="collapse" id={name+"-expand"}>
-                        <div className="border m-3 p-3">
-                            <p>{dish.name}</p>
-                            <p className="text-muted">{dish.notes}</p>
-                        </div>
-                        <div className="card card-body">
+                        <div className="mb-3">
                             {dishes}
                         </div>
                     </div>
