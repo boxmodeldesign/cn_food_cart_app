@@ -86,7 +86,8 @@ class App extends React.Component {
         // Prevent the page from reloading
         e.preventDefault();
         
-        if (this.state.chooseRandomly === false) {
+        /* this.state.chooseRandomly needs to be set to true in each condition to keep the display from switching back to the CartList component. Setting this.state.randomDish will send a random dish for the Suggestion component to display. this.state.unchosenDishes is set keep track of what random dishes has yet to be displayed */
+        if (this.state.chooseRandomly === false) { /* the 'Choose for me!' button hasn't been clicked before */
             let allDishes = [];
 
             // flatten the data according to dishes
@@ -94,7 +95,7 @@ class App extends React.Component {
                 return eatery.dishes.length === 1 
                 // if an eatery has only one rec'd dish push it into the array
                 ? allDishes.push(eatery) 
-                // if an eatery has more than one rec'd dish push the dish and a copy of the eatery data into the array
+                // if an eatery has more than one rec'd dish push the dish and a copy of the eatery data (to be able to print it in Suggestion.js) into the array
                 : eatery.dishes.forEach(dish => allDishes.push({
                     'name': eatery.name,
                     'open': eatery.open,
@@ -114,12 +115,11 @@ class App extends React.Component {
             
             // remove the randomly selected dish out of the array
             allDishes.splice(randNum, 1);
-            /* or use this more cumbersome method
-            allDishes = allDishes.filter(dish => dish != randomDish);
-            */ 
+            // or use this more cumbersome method
+            // allDishes = allDishes.filter(dish => dish != randomDish);
 
             this.setState({chooseRandomly: true, randomDish: randomDish, unchosenDishes: allDishes});
-        } else if (this.state.chooseRandomly === true && this.state.unchosenDishes.length !== 0) {
+        } else if (this.state.chooseRandomly === true && this.state.unchosenDishes.length !== 0) { /* the 'Choose for me!' button is pushed again */
             let allDishes = this.state.unchosenDishes.map(x => x);
 
             // choose a random number to use as the index to choose a random dish from the array
@@ -130,9 +130,14 @@ class App extends React.Component {
             allDishes.splice(randNum, 1);
 
             this.setState({chooseRandomly: true, randomDish: randomDish, unchosenDishes: allDishes});
-        } else {
-            console.log(this.state.chooseRandomly);
-            console.log('broke');
+        } else { /* all the dishes have been randomly cycled thru */
+            this.setState({
+                chooseRandomly: true,
+                randomDish: {
+                    // choosing randomDish.link to send a string that will get validated in Suggestion.js because no URL link should ever match this
+                    link: 'no more left to choose'
+                }
+            });
         }
     }
 
