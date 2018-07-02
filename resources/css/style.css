@@ -14,6 +14,16 @@ body {
   background-size: cover;
 }
 
+@media (max-width: 600px) {
+    body {
+        background-repeat: repeat-y;
+        -webkit-background-size: 100% auto;
+        -moz-background-size: 100% auto;
+        -o-background-size: 100% auto;
+        background-size: 100% auto;
+    }
+}
+
 .custom-control-label {
     cursor: pointer;
     -webkit-user-select: none;
