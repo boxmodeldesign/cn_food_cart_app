@@ -305,7 +305,11 @@
         "dishname1": "Green Machine with albacore",
         "dishtype1": "Sushi",
         "dishtags1": "M, V, VG, GF",
-        "dishnotes1": "A bit expensive, but is known as one of the best places to get sushi in town. This dish can be served without albacore, making it vegan, and it is also very good."
+        "dishnotes1": "A bit expensive, but is known as one of the best places to get sushi in town. This dish can be served with albacore, but it comes vegetarian, and it is very good either way. Without the sauce it is vegan, but I do recommend the sauce.",
+        "dishname2": "Smoked Salmon Ceasar",
+        "dishtype2": "Salad",
+        "dishtags2": "M",
+        "dishnotes2": "An amazing sushi roll designed for vegetarians. They can't call it totally vegan due to the black sesame puree containing honey, but it can be easily made without it."
     },
     {
         "name": "Shigezo",
@@ -447,7 +451,7 @@
         "link": "https://goo.gl/maps/pf9rXMJzMMT2",
         "category": "Indian",
         "price": "$$",
-        "dishname1": "Chicken Vinaloo",
+        "dishname1": "Chicken Vindaloo",
         "dishtype1": "Curry",
         "dishtags1": "M",
         "dishnotes1": "Some of the best indian food around, and the naan is very good. Can be a bit oily depending on the dish (e.g. biryani).",
