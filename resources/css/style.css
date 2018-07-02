@@ -6,14 +6,12 @@ body {
   font-family: 'Karla', sans-serif !important;
   font-size: 16px;
   line-height: 26px;
-  background-color: #a4c5bc;
-  /**
-  background: linear-gradient(rgba(255,255,255,.95), rgba(255,255,255,.95)), url(../../img/subway.jpg) no-repeat center center fixed; 
+  /* background-color: #a4c5bc; */
+  background: linear-gradient(rgba(255,255,255,.80), rgba(255,255,255,.95)), url(../images/brick.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  **/
 }
 
 .custom-control-label {
