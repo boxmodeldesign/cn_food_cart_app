@@ -1,3 +1,21 @@
+/********************************
+ General Styles
+ ******************************/
+
+body {
+  font-family: 'Karla', sans-serif !important;
+  font-size: 16px;
+  line-height: 26px;
+  background-color: #a4c5bc;
+  /**
+  background: linear-gradient(rgba(255,255,255,.95), rgba(255,255,255,.95)), url(../../img/subway.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  **/
+}
+
 .custom-control-label {
     cursor: pointer;
     -webkit-user-select: none;
@@ -11,15 +29,23 @@
     /* background-color: #eee; */
 }
 
+
+/********************************
+Icon Styles
+ ******************************/
+    
 .badge-m {
     background-color: #a72828;
 }
+
 .badge-v {
     background-color: #4fa728;
 }
+
 .badge-vg {
     background-color: #225d08;
 }
+
 .badge-gf {
     background-color: #a78228;
 }
